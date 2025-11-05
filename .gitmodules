@@ -1,0 +1,4 @@
+[submodule "ratchetGeom"]
+	path = ratchetGeom
+	url = https://github.com/FreeEnergyLBM/LBM.git
+	branch = optimizeRatchetGeom

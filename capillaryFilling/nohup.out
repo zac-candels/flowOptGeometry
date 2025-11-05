@@ -1,0 +1,1418 @@
+/work/y07/shared/cirrus-software/miniconda3/4.12.0-py39/lib/python3.9/site-packages/matplotlib/quiver.py:649: RuntimeWarning: divide by zero encountered in scalar divide
+  length = a * (widthu_per_lenu / (self.scale * self.width))
+/work/y07/shared/cirrus-software/miniconda3/4.12.0-py39/lib/python3.9/site-packages/matplotlib/quiver.py:649: RuntimeWarning: invalid value encountered in multiply
+  length = a * (widthu_per_lenu / (self.scale * self.width))
+max v:  0.0
+phi =  1.0 
+
+
+Interface position is 130
+Spread distance =  0.0 
+
+max v:  0.001683461891684382
+phi =  1.0 
+
+
+Interface position is 133
+Spread distance =  3 
+
+max v:  0.0015149199885974897
+phi =  1.000000000000531 
+
+
+Interface position is 134
+Spread distance =  4 
+
+max v:  0.0012951313866187062
+phi =  1.0000000000187077 
+
+
+Interface position is 135
+Spread distance =  5 
+
+max v:  0.0014054882584106422
+phi =  0.9999999999828064 
+
+
+Interface position is 135
+Spread distance =  5 
+
+max v:  0.0013877839627722995
+phi =  1.0000000037488448 
+
+
+Interface position is 136
+Spread distance =  6 
+
+max v:  0.0013655014850512054
+phi =  1.0000000200683528 
+
+
+Interface position is 137
+Spread distance =  7 
+
+max v:  0.001269882147944303
+phi =  1.0000000457744522 
+
+
+Interface position is 138
+Spread distance =  8 
+
+max v:  0.0012843002335267
+phi =  1.0000000644299218 
+
+
+Interface position is 138
+Spread distance =  8 
+
+max v:  0.0012985201737455616
+phi =  1.0000000608096056 
+
+
+Interface position is 139
+Spread distance =  9 
+
+max v:  0.0013118318176608163
+phi =  1.0000000220650909 
+
+
+Interface position is 140
+Spread distance =  10 
+
+max v:  0.001144338204126702
+phi =  0.9999998610711877 
+
+
+Interface position is 141
+Spread distance =  11 
+
+max v:  0.001212464860676761
+phi =  0.9999994600560855 
+
+
+Interface position is 141
+Spread distance =  11 
+
+max v:  0.0011946712721676077
+phi =  0.9999987214173471 
+
+
+Interface position is 142
+Spread distance =  12 
+
+max v:  0.00115345445728997
+phi =  0.9999975505368546 
+
+
+Interface position is 143
+Spread distance =  13 
+
+max v:  0.0011632143300311438
+phi =  0.9999958725043357 
+
+
+Interface position is 143
+Spread distance =  13 
+
+max v:  0.0011254374122545913
+phi =  0.9999936232222209 
+
+
+Interface position is 144
+Spread distance =  14 
+
+max v:  0.0011180000263708216
+phi =  0.9999907609383607 
+
+
+Interface position is 145
+Spread distance =  15 
+
+max v:  0.0011182288225247408
+phi =  0.9999872710469695 
+
+
+Interface position is 145
+Spread distance =  15 
+
+max v:  0.0011295325624205762
+phi =  0.9999831385447013 
+
+
+Interface position is 146
+Spread distance =  16 
+
+max v:  0.0010507669528327225
+phi =  0.9999783663501355 
+
+
+Interface position is 147
+Spread distance =  17 
+
+max v:  0.0011540298712324202
+phi =  0.9999729932517998 
+
+
+Interface position is 147
+Spread distance =  17 
+
+max v:  0.0011536105394181954
+phi =  0.9999670198264744 
+
+
+Interface position is 148
+Spread distance =  18 
+
+max v:  0.001080345082540821
+phi =  0.9999604859331577 
+
+
+Interface position is 149
+Spread distance =  19 
+
+max v:  0.0010446942229369893
+phi =  0.9999534533316811 
+
+
+Interface position is 149
+Spread distance =  19 
+
+max v:  0.001058579861547432
+phi =  0.9999459216324201 
+
+
+Interface position is 150
+Spread distance =  20 
+
+max v:  0.0010448029129619802
+phi =  0.999937963427537 
+
+
+Interface position is 150
+Spread distance =  20 
+
+max v:  0.0011115052899110876
+phi =  0.999929622261831 
+
+
+Interface position is 151
+Spread distance =  21 
+
+max v:  0.00099435844769047
+phi =  0.9999209185950343 
+
+
+Interface position is 152
+Spread distance =  22 
+
+max v:  0.0009915934053542717
+phi =  0.9999119451889613 
+
+
+Interface position is 152
+Spread distance =  22 
+
+max v:  0.0009983852051392657
+phi =  0.9999026751253276 
+
+
+Interface position is 153
+Spread distance =  23 
+
+max v:  0.0010015908042424423
+phi =  0.9998932083092334 
+
+
+Interface position is 153
+Spread distance =  23 
+
+max v:  0.0010484407231426413
+phi =  0.9998835614848751 
+
+
+Interface position is 154
+Spread distance =  24 
+
+max v:  0.0009569887801143151
+phi =  0.9998737626551393 
+
+
+Interface position is 155
+Spread distance =  25 
+
+max v:  0.0010052654493307596
+phi =  0.9998638859153379 
+
+
+Interface position is 155
+Spread distance =  25 
+
+max v:  0.0009423246139541663
+phi =  0.9998538862042587 
+
+
+Interface position is 156
+Spread distance =  26 
+
+max v:  0.0009278950924621747
+phi =  0.9998438955561365 
+
+
+Interface position is 156
+Spread distance =  26 
+
+max v:  0.0009276595355748416
+phi =  0.999833846331392 
+
+
+Interface position is 157
+Spread distance =  27 
+
+max v:  0.0009719414387697392
+phi =  0.9998238404907017 
+
+
+Interface position is 157
+Spread distance =  27 
+
+max v:  0.0009543066405687794
+phi =  0.9998138449826136 
+
+
+Interface position is 158
+Spread distance =  28 
+
+max v:  0.0009304720035986681
+phi =  0.9998038976677692 
+
+
+Interface position is 158
+Spread distance =  28 
+
+max v:  0.0009707799961792383
+phi =  0.9997940296272262 
+
+
+Interface position is 159
+Spread distance =  29 
+
+max v:  0.0009138997753399683
+phi =  0.9997842263713413 
+
+
+Interface position is 159
+Spread distance =  29 
+
+max v:  0.0009744343069079073
+phi =  0.9997745583662203 
+
+
+Interface position is 160
+Spread distance =  30 
+
+max v:  0.0008850800097241888
+phi =  0.9997649639410447 
+
+
+Interface position is 161
+Spread distance =  31 
+
+max v:  0.0009671252349815168
+phi =  0.9997555290577761 
+
+
+Interface position is 161
+Spread distance =  31 
+
+max v:  0.0008890154266880632
+phi =  0.9997461692802191 
+
+
+Interface position is 162
+Spread distance =  32 
+
+max v:  0.0009555222948255893
+phi =  0.9997370097727502 
+
+
+Interface position is 162
+Spread distance =  32 
+
+max v:  0.0008917044685703607
+phi =  0.9997279272369448 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0009175847032797436
+phi =  0.9997190668462387 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.000888330662570854
+phi =  0.9997102888403451 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.000892092541513451
+phi =  0.9997017330721826 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008810607633664726
+phi =  0.999693262523398 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008938047857914423
+phi =  0.9996850173785886 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.00086695498958821
+phi =  0.9996768637768135 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008932678279491009
+phi =  0.9996689456305896 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008475868311996373
+phi =  0.9996611130482658 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008954316288980598
+phi =  0.9996535221460829 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008261654269827867
+phi =  0.999646001017685 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008835658462483114
+phi =  0.9996387013354663 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008193912507950416
+phi =  0.9996314913590936 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008658276859504648
+phi =  0.9996245075648283 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008256807362737007
+phi =  0.9996176166853021 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008422154322539165
+phi =  0.9996109321493143 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008035106036436414
+phi =  0.9996043354187173 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008129995992122561
+phi =  0.9995978948921033 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008146447102334826
+phi =  0.9995915877305848 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007794946292863038
+phi =  0.9995854362748975 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007674958957711289
+phi =  0.9995794312575962 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007800831592331441
+phi =  0.9995735450871645 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007783484506741844
+phi =  0.9995677953457862 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000794225390786629
+phi =  0.9995621152028166 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008239555429323671
+phi =  0.9995566177406773 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007874197129269037
+phi =  0.9995511959267948 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007966441328518742
+phi =  0.9995459671498573 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007530173926916356
+phi =  0.9995407916094066 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007586657056166164
+phi =  0.9995357509566138 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007418170591558186
+phi =  0.9995307916092427 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007523508579335562
+phi =  0.9995259252606449 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007631086453406417
+phi =  0.9995212062865322 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007569912885488499
+phi =  0.9995165704895723 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007814780378973561
+phi =  0.9995120816488672 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007610558215244774
+phi =  0.9995076279899576 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007426815815834199
+phi =  0.9995032788286452 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000722823855303315
+phi =  0.9994989906450715 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007350827126927663
+phi =  0.9994948059683608 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000747797072341793
+phi =  0.9994907568952276 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007442905936295516
+phi =  0.9994867635735971 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007488588000923486
+phi =  0.9994828798399442 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007003699727670832
+phi =  0.9994790222497323 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007030493216139892
+phi =  0.9994752408967442 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007001006422096571
+phi =  0.9994715348989416 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007302562117417622
+phi =  0.9994679133325941 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007447991946275616
+phi =  0.9994644267284356 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000707666165548849
+phi =  0.9994609567922905 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000699855486008713
+phi =  0.9994575558478289 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0006810989754549102
+phi =  0.9994542013490199 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000724140512398171
+phi =  0.9994508876574937 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007320135679301963
+phi =  0.9994476775141875 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.00069234787338327
+phi =  0.9994445210435344 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0006874302245501272
+phi =  0.999441477937765 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0
+phi =  1.0 
+
+
+Interface position is 130
+Spread distance =  0.0 
+
+max v:  0.001683461891684382
+phi =  1.0 
+
+
+Interface position is 133
+Spread distance =  3 
+
+max v:  0.0015149199885974897
+phi =  1.000000000000531 
+
+
+Interface position is 134
+Spread distance =  4 
+
+max v:  0.0012951313866187062
+phi =  1.0000000000187077 
+
+
+Interface position is 135
+Spread distance =  5 
+
+max v:  0.0014054882584106422
+phi =  0.9999999999828064 
+
+
+Interface position is 135
+Spread distance =  5 
+
+max v:  0.0013877839627722995
+phi =  1.0000000037488448 
+
+
+Interface position is 136
+Spread distance =  6 
+
+max v:  0.0013655014850512054
+phi =  1.0000000200683528 
+
+
+Interface position is 137
+Spread distance =  7 
+
+max v:  0.001269882147944303
+phi =  1.0000000457744522 
+
+
+Interface position is 138
+Spread distance =  8 
+
+max v:  0.0012843002335267
+phi =  1.0000000644299218 
+
+
+Interface position is 138
+Spread distance =  8 
+
+max v:  0.0012985201737455616
+phi =  1.0000000608096056 
+
+
+Interface position is 139
+Spread distance =  9 
+
+max v:  0.0013118318176608163
+phi =  1.0000000220650909 
+
+
+Interface position is 140
+Spread distance =  10 
+
+max v:  0.001144338204126702
+phi =  0.9999998610711877 
+
+
+Interface position is 141
+Spread distance =  11 
+
+max v:  0.001212464860676761
+phi =  0.9999994600560855 
+
+
+Interface position is 141
+Spread distance =  11 
+
+max v:  0.0011946712721676077
+phi =  0.9999987214173471 
+
+
+Interface position is 142
+Spread distance =  12 
+
+max v:  0.00115345445728997
+phi =  0.9999975505368546 
+
+
+Interface position is 143
+Spread distance =  13 
+
+max v:  0.0011632143300311438
+phi =  0.9999958725043357 
+
+
+Interface position is 143
+Spread distance =  13 
+
+max v:  0.0011254374122545913
+phi =  0.9999936232222209 
+
+
+Interface position is 144
+Spread distance =  14 
+
+max v:  0.0011180000263708216
+phi =  0.9999907609383607 
+
+
+Interface position is 145
+Spread distance =  15 
+
+max v:  0.0011182288225247408
+phi =  0.9999872710469695 
+
+
+Interface position is 145
+Spread distance =  15 
+
+max v:  0.0011295325624205762
+phi =  0.9999831385447013 
+
+
+Interface position is 146
+Spread distance =  16 
+
+max v:  0.0010507669528327225
+phi =  0.9999783663501355 
+
+
+Interface position is 147
+Spread distance =  17 
+
+max v:  0.0011540298712324202
+phi =  0.9999729932517998 
+
+
+Interface position is 147
+Spread distance =  17 
+
+max v:  0.0011536105394181954
+phi =  0.9999670198264744 
+
+
+Interface position is 148
+Spread distance =  18 
+
+max v:  0.001080345082540821
+phi =  0.9999604859331577 
+
+
+Interface position is 149
+Spread distance =  19 
+
+max v:  0.0010446942229369893
+phi =  0.9999534533316811 
+
+
+Interface position is 149
+Spread distance =  19 
+
+max v:  0.001058579861547432
+phi =  0.9999459216324201 
+
+
+Interface position is 150
+Spread distance =  20 
+
+max v:  0.0010448029129619802
+phi =  0.999937963427537 
+
+
+Interface position is 150
+Spread distance =  20 
+
+max v:  0.0011115052899110876
+phi =  0.999929622261831 
+
+
+Interface position is 151
+Spread distance =  21 
+
+max v:  0.00099435844769047
+phi =  0.9999209185950343 
+
+
+Interface position is 152
+Spread distance =  22 
+
+max v:  0.0009915934053542717
+phi =  0.9999119451889613 
+
+
+Interface position is 152
+Spread distance =  22 
+
+max v:  0.0009983852051392657
+phi =  0.9999026751253276 
+
+
+Interface position is 153
+Spread distance =  23 
+
+max v:  0.0010015908042424423
+phi =  0.9998932083092334 
+
+
+Interface position is 153
+Spread distance =  23 
+
+max v:  0.0010484407231426413
+phi =  0.9998835614848751 
+
+
+Interface position is 154
+Spread distance =  24 
+
+max v:  0.0009569887801143151
+phi =  0.9998737626551393 
+
+
+Interface position is 155
+Spread distance =  25 
+
+max v:  0.0010052654493307596
+phi =  0.9998638859153379 
+
+
+Interface position is 155
+Spread distance =  25 
+
+max v:  0.0009423246139541663
+phi =  0.9998538862042587 
+
+
+Interface position is 156
+Spread distance =  26 
+
+max v:  0.0009278950924621747
+phi =  0.9998438955561365 
+
+
+Interface position is 156
+Spread distance =  26 
+
+max v:  0.0009276595355748416
+phi =  0.999833846331392 
+
+
+Interface position is 157
+Spread distance =  27 
+
+max v:  0.0009719414387697392
+phi =  0.9998238404907017 
+
+
+Interface position is 157
+Spread distance =  27 
+
+max v:  0.0009543066405687794
+phi =  0.9998138449826136 
+
+
+Interface position is 158
+Spread distance =  28 
+
+max v:  0.0009304720035986681
+phi =  0.9998038976677692 
+
+
+Interface position is 158
+Spread distance =  28 
+
+max v:  0.0009707799961792383
+phi =  0.9997940296272262 
+
+
+Interface position is 159
+Spread distance =  29 
+
+max v:  0.0009138997753399683
+phi =  0.9997842263713413 
+
+
+Interface position is 159
+Spread distance =  29 
+
+max v:  0.0009744343069079073
+phi =  0.9997745583662203 
+
+
+Interface position is 160
+Spread distance =  30 
+
+max v:  0.0008850800097241888
+phi =  0.9997649639410447 
+
+
+Interface position is 161
+Spread distance =  31 
+
+max v:  0.0009671252349815168
+phi =  0.9997555290577761 
+
+
+Interface position is 161
+Spread distance =  31 
+
+max v:  0.0008890154266880632
+phi =  0.9997461692802191 
+
+
+Interface position is 162
+Spread distance =  32 
+
+max v:  0.0009555222948255893
+phi =  0.9997370097727502 
+
+
+Interface position is 162
+Spread distance =  32 
+
+max v:  0.0008917044685703607
+phi =  0.9997279272369448 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0009175847032797436
+phi =  0.9997190668462387 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.000888330662570854
+phi =  0.9997102888403451 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.000892092541513451
+phi =  0.9997017330721826 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008810607633664726
+phi =  0.999693262523398 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008938047857914423
+phi =  0.9996850173785886 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.00086695498958821
+phi =  0.9996768637768135 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008932678279491009
+phi =  0.9996689456305896 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008475868311996373
+phi =  0.9996611130482658 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008954316288980598
+phi =  0.9996535221460829 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008261654269827867
+phi =  0.999646001017685 
+
+
+Interface position is 163
+Spread distance =  33 
+
+max v:  0.0008835658462483114
+phi =  0.9996387013354663 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008193912507950416
+phi =  0.9996314913590936 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008658276859504648
+phi =  0.9996245075648283 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008256807362737007
+phi =  0.9996176166853021 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008422154322539165
+phi =  0.9996109321493143 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008035106036436414
+phi =  0.9996043354187173 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008129995992122561
+phi =  0.9995978948921033 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008146447102334826
+phi =  0.9995915877305848 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007794946292863038
+phi =  0.9995854362748975 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007674958957711289
+phi =  0.9995794312575962 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007800831592331441
+phi =  0.9995735450871645 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007783484506741844
+phi =  0.9995677953457862 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000794225390786629
+phi =  0.9995621152028166 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0008239555429323671
+phi =  0.9995566177406773 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007874197129269037
+phi =  0.9995511959267948 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007966441328518742
+phi =  0.9995459671498573 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007530173926916356
+phi =  0.9995407916094066 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007586657056166164
+phi =  0.9995357509566138 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007418170591558186
+phi =  0.9995307916092427 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007523508579335562
+phi =  0.9995259252606449 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007631086453406417
+phi =  0.9995212062865322 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007569912885488499
+phi =  0.9995165704895723 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007814780378973561
+phi =  0.9995120816488672 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007610558215244774
+phi =  0.9995076279899576 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007426815815834199
+phi =  0.9995032788286452 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000722823855303315
+phi =  0.9994989906450715 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007350827126927663
+phi =  0.9994948059683608 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000747797072341793
+phi =  0.9994907568952276 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007442905936295516
+phi =  0.9994867635735971 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007488588000923486
+phi =  0.9994828798399442 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007003699727670832
+phi =  0.9994790222497323 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007030493216139892
+phi =  0.9994752408967442 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007001006422096571
+phi =  0.9994715348989416 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007302562117417622
+phi =  0.9994679133325941 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007447991946275616
+phi =  0.9994644267284356 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000707666165548849
+phi =  0.9994609567922905 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000699855486008713
+phi =  0.9994575558478289 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0006810989754549102
+phi =  0.9994542013490199 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.000724140512398171
+phi =  0.9994508876574937 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0007320135679301963
+phi =  0.9994476775141875 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.00069234787338327
+phi =  0.9994445210435344 
+
+
+Interface position is 0
+Spread distance =  -130 
+
+max v:  0.0006874302245501272
+phi =  0.999441477937765 
+
+
+Interface position is 0
+Spread distance =  -130 
+
