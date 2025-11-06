@@ -143,21 +143,14 @@ void initParams(std::string inputfile) {
 
     offset = 10;
     channel_length = ( Num_ratchets_per_row + 1 )*( std::max(a2,c2) + inter_ratchet_dist) + offset;
-    reservoir_length = channel_length;
-    lx = (int)1*reservoir_length;
+    lx = (int)1*channel_length;
 
-    channel_height = 3*b2;
-    reservoir_height = channel_height;
-    ly = (int)2*channel_height;
+    ly = (int)6*b2;
 
     channel_width = ( Num_rows_of_ratchets )*( std::max(a2, b2) + row_to_row_dist );
     lz = 5 * channel_width;
 
     y0_val = 2;
-
-
-    x_pos_first_row = reservoir_length + offset;
-    z_pos_first_row = lz/2;
 
     reservoirBackWall_x = 5;
     reservoirFrontWall_x = 100;
@@ -166,6 +159,9 @@ void initParams(std::string inputfile) {
     reservoirLiquidHeight = 35;
     dz = 5;
     dx = 5;
+
+    x_pos_first_row = reservoirFrontWall_x + offset;
+    z_pos_first_row = lz/2;
 
     // Initialise free energy parameters from the surface tension and interface width
     A = 12 * surfacetension / interfacewidth;
