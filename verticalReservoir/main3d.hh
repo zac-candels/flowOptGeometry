@@ -69,10 +69,11 @@ int z_pos_first_row;
 
 double pi = 3.141592653589;
 
-int x0;
-int xf;
-int z0;
-int zf;
+int reservoirBackWall_x;
+int reservoirFrontWall_x;
+int reservoirLeftWall_z;
+int reservoirRightWall_z;
+int reservoirLiquidHeight;
 int dz;
 int dx;
 
@@ -158,10 +159,11 @@ void initParams(std::string inputfile) {
     x_pos_first_row = reservoir_length + offset;
     z_pos_first_row = lz/2;
 
-    x0 = 5;
-    xf = 100;
-    z0 = 5;
-    zf = lz -5;
+    reservoirBackWall_x = 5;
+    reservoirFrontWall_x = 100;
+    reservoirLeftWall_z = 5;
+    reservoirRightWall_z = lz -5;
+    reservoirLiquidHeight = 35;
     dz = 5;
     dx = 5;
 
@@ -280,14 +282,14 @@ int initBoundary(const int k) {
     // Need periodic boundary conditions in the x-direction for the reservoir
 
 
-    bool reservoirLeftWall = ( zz >= z0 ) && ( zz <= z0 + dz ) && ( yy <= 40 ) && ( xx >= x0 ) && ( xx <= xf );
-    bool reservoirBackWall = ( xx >= x0 ) && ( xx <= x0 + dx ) && ( yy <= 40 ) && ( zz >= z0 ) && (zz <= zf );
+    bool reservoirLeftWallCond = ( zz >= reservoirLeftWall_z ) && ( zz <= reservoirLeftWall_z + dz ) && ( yy <= 40 ) && ( xx >= reservoirBackWall_x ) && ( xx <= reservoirFrontWall_x );
+    bool reservoirBackWallCond = ( xx >= reservoirBackWall_x ) && ( xx <= reservoirBackWall_x + dx ) && ( yy <= 40 ) && ( zz >= reservoirLeftWall_z ) && (zz <= reservoirRightWall_z );
 
-    bool reservoirRightWall = ( zz >= zf - dz ) && ( zz <= zf ) && ( yy <= 40 ) && ( xx >= x0 ) && ( xx <= xf );
-    bool reservoirFrontWall = ( xx >= xf - dx ) && ( xx <= xf ) && ( yy > 10 ) &&( yy <= 40 ) && ( zz >= z0 ) && (zz <= zf );
+    bool reservoirRightWallCond = ( zz >= reservoirRightWall_z - dz ) && ( zz <= reservoirRightWall_z ) && ( yy <= 40 ) && ( xx >= reservoirBackWall_x ) && ( xx <= reservoirFrontWall_x );
+    bool reservoirFrontWallCond = ( xx >= reservoirFrontWall_x - dx ) && ( xx <= reservoirFrontWall_x ) && ( yy > 10 ) &&( yy <= 40 ) && ( zz >= reservoirLeftWall_z ) && (zz <= reservoirRightWall_z );
 
 
-    if( reservoirLeftWall || reservoirBackWall || reservoirRightWall || reservoirFrontWall )
+    if( reservoirLeftWallCond || reservoirBackWallCond || reservoirRightWallCond || reservoirFrontWallCond )
     {
         return 1;
     }
@@ -323,6 +325,11 @@ double initFluid(const int k) {
 
     //     return 0.5 - 0.5*tanh(2*(xx - (reservoir_length + 20) )/4.0);
     // }
+
+    if( ( xx >= reservoirBackWall_x ) && ( xx <= reservoirFrontWall_x ) && ( zz >= reservoirLeftWall_z ) && ( zz <= reservoirRightWall_z ) )
+    {
+        return 0.5 - 0.5*tanh(2*(yy - reservoirLiquidHeight )/4.0);
+    }
 
     // if( ( xx >= right_reservoir - 10 ) && ( yy < constraining_plate_height -1) )
     // {
