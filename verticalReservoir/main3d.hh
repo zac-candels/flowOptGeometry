@@ -291,7 +291,7 @@ int initBoundary(const int k) {
 
     if( reservoirLeftWallCond || reservoirBackWallCond || reservoirRightWallCond || reservoirFrontWallCond )
     {
-        return 1;
+        return 2;
     }
 
     if( ( yy <= 2 ) || ( yy >= ly - 2 ) )
