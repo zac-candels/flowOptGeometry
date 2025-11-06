@@ -54,7 +54,7 @@ int total_num_ratchets;
 double reservoir_length;
 double reservoir_height;
 
-int channel_width;
+int domain_width;
 double channel_height;
 double channel_length;
 double y0_val = channel_height;
@@ -73,7 +73,9 @@ int reservoirBackWall_x;
 int reservoirFrontWall_x;
 int reservoirLeftWall_z;
 int reservoirRightWall_z;
+int reservoirHeight;
 int reservoirLiquidHeight;
+int reservoirOutletHeight;
 int dz;
 int dx;
 
@@ -145,18 +147,20 @@ void initParams(std::string inputfile) {
     channel_length = ( Num_ratchets_per_row + 1 )*( std::max(a2,c2) + inter_ratchet_dist) + offset;
     lx = (int)1*channel_length;
 
-    ly = (int)6*b2;
+    ly = (int)4*b2;
 
-    channel_width = ( Num_rows_of_ratchets )*( std::max(a2, b2) + row_to_row_dist );
-    lz = 5 * channel_width;
+    domain_width = ( Num_rows_of_ratchets )*( std::max(a2, b2) + row_to_row_dist );
+    lz = 3 * domain_width;
 
     y0_val = 2;
 
     reservoirBackWall_x = 5;
-    reservoirFrontWall_x = 100;
+    reservoirFrontWall_x = int(lx / 2);
     reservoirLeftWall_z = 5;
-    reservoirRightWall_z = lz -5;
-    reservoirLiquidHeight = 35;
+    reservoirRightWall_z = lz - 5;
+    reservoirHeight = int(0.7 * ly);
+    reservoirLiquidHeight = int(0.8 * reservoirHeight);
+    reservoirOutletHeight = int(0.2 * reservoirHeight);
     dz = 5;
     dx = 5;
 
@@ -278,11 +282,11 @@ int initBoundary(const int k) {
     // Need periodic boundary conditions in the x-direction for the reservoir
 
 
-    bool reservoirLeftWallCond = ( zz >= reservoirLeftWall_z ) && ( zz <= reservoirLeftWall_z + dz ) && ( yy <= 40 ) && ( xx >= reservoirBackWall_x ) && ( xx <= reservoirFrontWall_x );
-    bool reservoirBackWallCond = ( xx >= reservoirBackWall_x ) && ( xx <= reservoirBackWall_x + dx ) && ( yy <= 40 ) && ( zz >= reservoirLeftWall_z ) && (zz <= reservoirRightWall_z );
+    bool reservoirLeftWallCond = ( zz >= reservoirLeftWall_z ) && ( zz <= reservoirLeftWall_z + dz ) && ( yy <= reservoirHeight ) && ( xx >= reservoirBackWall_x ) && ( xx <= reservoirFrontWall_x );
+    bool reservoirBackWallCond = ( xx >= reservoirBackWall_x ) && ( xx <= reservoirBackWall_x + dx ) && ( yy <= reservoirHeight ) && ( zz >= reservoirLeftWall_z ) && (zz <= reservoirRightWall_z );
 
-    bool reservoirRightWallCond = ( zz >= reservoirRightWall_z - dz ) && ( zz <= reservoirRightWall_z ) && ( yy <= 40 ) && ( xx >= reservoirBackWall_x ) && ( xx <= reservoirFrontWall_x );
-    bool reservoirFrontWallCond = ( xx >= reservoirFrontWall_x - dx ) && ( xx <= reservoirFrontWall_x ) && ( yy > 10 ) &&( yy <= 40 ) && ( zz >= reservoirLeftWall_z ) && (zz <= reservoirRightWall_z );
+    bool reservoirRightWallCond = ( zz >= reservoirRightWall_z - dz ) && ( zz <= reservoirRightWall_z ) && ( yy <= reservoirHeight ) && ( xx >= reservoirBackWall_x ) && ( xx <= reservoirFrontWall_x );
+    bool reservoirFrontWallCond = ( xx >= reservoirFrontWall_x - dx ) && ( xx <= reservoirFrontWall_x ) && ( yy > 10 ) &&( yy <= reservoirHeight ) && ( zz >= reservoirLeftWall_z ) && (zz <= reservoirRightWall_z );
 
 
     if( reservoirLeftWallCond || reservoirBackWallCond || reservoirRightWallCond || reservoirFrontWallCond )
@@ -316,21 +320,15 @@ double initFluid(const int k) {
     // Smooth droplet
     
 
-    // if( (xx >= reservoir_length) && (xx <= reservoir_length + channel_length) && (yy > channel_height) && (yy <= constraining_plate_height) )
-    // {
-
-    //     return 0.5 - 0.5*tanh(2*(xx - (reservoir_length + 20) )/4.0);
-    // }
-
     if( ( xx >= reservoirBackWall_x ) && ( xx <= reservoirFrontWall_x ) && ( zz >= reservoirLeftWall_z ) && ( zz <= reservoirRightWall_z ) )
     {
         return 0.5 - 0.5*tanh(2*(yy - reservoirLiquidHeight )/4.0);
     }
 
-    // if( ( xx >= right_reservoir - 10 ) && ( yy < constraining_plate_height -1) )
-    // {
-    //     return 0.5 + 0.5*tanh(2*(xx - right_reservoir)/4.0);
-    // }
+    if( ( yy <= reservoirOutletHeight ) && ( zz >= reservoirLeftWall_z + dz ) && ( zz <= reservoirRightWall_z - dz ) && ( xx >= reservoirBackWall_x ) )
+    {
+        return 0.5 - 0.5*tanh(2*(xx - ( reservoirFrontWall_x  ) )/4.0);
+    }
 
 
     return 0;
