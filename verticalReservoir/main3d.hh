@@ -69,6 +69,13 @@ int z_pos_first_row;
 
 double pi = 3.141592653589;
 
+int x0;
+int xf;
+int z0;
+int zf;
+int dz;
+int dx;
+
 // Class that will handle input parameters
 InputParameters params;
 
@@ -150,6 +157,13 @@ void initParams(std::string inputfile) {
 
     x_pos_first_row = reservoir_length + offset;
     z_pos_first_row = lz/2;
+
+    x0 = 5;
+    xf = 100;
+    z0 = 5;
+    zf = lz -5;
+    dz = 5;
+    dx = 5;
 
     // Initialise free energy parameters from the surface tension and interface width
     A = 12 * surfacetension / interfacewidth;
@@ -264,12 +278,8 @@ int initBoundary(const int k) {
 
     // Need bounceback conditions for reservoir (all walls need bounceback)
     // Need periodic boundary conditions in the x-direction for the reservoir
-    int x0 = 5;
-    int xf = 100;
-    int z0 = 5;
-    int zf = lz -5;
-    int dz = 5;
-    int dx = 5;
+
+
     bool reservoirLeftWall = ( zz >= z0 ) && ( zz <= z0 + dz ) && ( yy <= 40 ) && ( xx >= x0 ) && ( xx <= xf );
     bool reservoirBackWall = ( xx >= x0 ) && ( xx <= x0 + dx ) && ( yy <= 40 ) && ( zz >= z0 ) && (zz <= zf );
 
