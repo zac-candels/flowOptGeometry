@@ -7,7 +7,7 @@
 #SBATCH --account=sc139-wetting
 #SBATCH --qos=lowpriority
 #SBATCH --ntasks=1               # Number of tasks (processes)
-#SBATCH --cpus-per-task=5         # Number of CPU cores per task
+#SBATCH --cpus-per-task=3         # Number of CPU cores per task
 
 # Run the executable
 srun ./run.exe

@@ -269,14 +269,15 @@ int initBoundary(const int k) {
 
     // This loop checks if any of the ratchet conditions are satisfied for a given point in the domain. If any of the criteria are satisfied, 
     // we return 1, indicating that the given point is inside a ratchet. 
-    for (int i = 0; i < Num_rows_of_ratchets; i++)
-    {
-        for (int j = 0; j < Num_ratchets_per_row; j++)
-        if( ratchet_condition_arr[i][j][0] && ratchet_condition_arr[i][j][1] && ratchet_condition_arr[i][j][2] && ratchet_condition_arr[i][j][3] && ratchet_condition_arr[i][j][4] )
-        {
-            return 1;
-        }
-    }
+
+    // for (int i = 0; i < Num_rows_of_ratchets; i++)
+    // {
+    //     for (int j = 0; j < Num_ratchets_per_row; j++)
+    //     if( ratchet_condition_arr[i][j][0] && ratchet_condition_arr[i][j][1] && ratchet_condition_arr[i][j][2] && ratchet_condition_arr[i][j][3] && ratchet_condition_arr[i][j][4] )
+    //     {
+    //         return 1;
+    //     }
+    // }
 
     // Need bounceback conditions for reservoir (all walls need bounceback)
     // Need periodic boundary conditions in the x-direction for the reservoir
@@ -392,7 +393,7 @@ auto initBinary() {
 
     // BinaryLee is the model class, and we give the lattice and traits as template parameters.
     //BinaryWellBalanced<Lattice, typename DefaultTraitBinaryWellBalanced<Lattice>::template SetStencil<D2Q5>> binary;
-    WellBalancedCH<0,2,Lattice, DefaultTraitWellBalancedCH2<0,2,Lattice>::template AddProcessor<std::tuple<GradientsMultiStencil<ChemicalPotential<0>,CentralQBounceBack,CentralXYZBounceBack>>>> binary;
+    WellBalancedCH<0,38,Lattice, DefaultTraitWellBalancedCH2<0,38,Lattice>::template AddProcessor<std::tuple<GradientsMultiStencil<ChemicalPotential<0>,CentralQBounceBack,CentralXYZBounceBack>>>> binary;
 
     // Boundary ids to apply the LBM model
     binary.setCollideID({0,11});

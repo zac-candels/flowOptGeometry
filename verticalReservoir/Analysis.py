@@ -73,15 +73,35 @@ for t in range(tstart, tend + 1, tinc):
     rgbdiss = np.flip(dissipation[:, :, zslice]).T
 
     im = ax.imshow(np.fliplr(rgbv), interpolation='nearest', origin='upper')
-    fig.colorbar(im,orientation="horizontal")
     #im2 = ax[1].imshow(rgbdiss, interpolation='nearest', origin='upper')
 
     stepx, stepy = 1, 1
-    X, Z = np.meshgrid(np.linspace(0, LX - 1, int(LX / stepx)), np.linspace(0, LY - 1, int(LY / stepy)))
-    #ax.quiver(X.T, Z.T,
-    #             np.flip(np.flip(-v[0:LX:stepx, 0:LY:stepy, zslice, 0], 0), 1),
-    #             np.flip(v[0:LX:stepx, 0:LY:stepy, zslice, 1]),
-    #             width=0.0008, headwidth=7.5, headlength=7.5)
+
+    # raw velocity slices (shape: (LX, LY))
+    vx = v[0:LX:stepx, 0:LY:stepy, zslice, 0]
+    vy = v[0:LX:stepx, 0:LY:stepy, zslice, 1]
+
+    # Build displayed U,V arrays that align with the image.
+    # Derived mapping: displayed[r, c] corresponds to original at (i=c, j=LY-1-r)
+    # So U_disp[r,c] = vx[c, LY-1 - r]  -> vx[:, ::-1].T
+    U_disp = vx[:, ::-1].T     # shape (LY, LX)
+    V_disp = vy[:, ::-1].T     # shape (LY, LX)
+
+    # Coordinates grid that matches imshow indexing (rows=r, cols=c)
+    X_disp, Y_disp = np.meshgrid(np.arange(0, LX, stepx),
+                                 np.arange(0, LY, stepy))  # shapes (LY, LX)
+
+    # Optional: decimate arrows if dense
+    dec = 1   # set to 2 or 4 to sparsify arrows
+    Xq = X_disp[::dec, ::dec]
+    Yq = Y_disp[::dec, ::dec]
+    Uq = U_disp[::dec, ::dec]
+    Vq = V_disp[::dec, ::dec]
+
+    # Plot quiver. origin='upper' was used in imshow, and these arrays are in the same indexing,
+    # so no component sign flip is required.
+    ax.quiver(Xq, Yq, Uq, Vq, width=0.0008, headwidth=7.5, headlength=7.5, angles='xy', scale_units='xy')
+   
 
     #fig.colorbar(im2, orientation="horizontal")
     plt.tight_layout()

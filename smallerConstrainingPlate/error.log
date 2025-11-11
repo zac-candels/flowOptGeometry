@@ -1,0 +1,5 @@
+slurmstepd: error: *** JOB 7608254 ON r1i4n19 CANCELLED AT 2025-11-07T12:38:16 DUE TO TIME LIMIT ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 7608254.0 ON r1i4n19 CANCELLED AT 2025-11-07T12:38:17 DUE TO TIME LIMIT ***
+srun: error: r1i4n19: task 0: Terminated
+srun: launch/slurm: _step_signal: Terminating StepId=7608254.0

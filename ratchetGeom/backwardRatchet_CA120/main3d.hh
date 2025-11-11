@@ -431,7 +431,7 @@ auto initBinary() {
 
     // BinaryLee is the model class, and we give the lattice and traits as template parameters.
     //BinaryWellBalanced<Lattice, typename DefaultTraitBinaryWellBalanced<Lattice>::template SetStencil<D2Q5>> binary;
-    WellBalancedCH<0,2,Lattice, DefaultTraitWellBalancedCH2<0,2,Lattice>::template AddProcessor<std::tuple<GradientsMultiStencil<ChemicalPotential<0>,CentralQBounceBack,CentralXYZBounceBack>>>> binary;
+    WellBalancedCH<0,Lattice, DefaultTraitWellBalancedCH2<0,Lattice>::template AddProcessor<std::tuple<GradientsMultiStencil<ChemicalPotential<0>,CentralQBounceBack,CentralXYZBounceBack>>>> binary;
 
     // Boundary ids to apply the LBM model
     binary.setCollideID({0,11});
