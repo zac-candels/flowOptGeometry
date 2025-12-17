@@ -1,52 +1,60 @@
+import sympy as sym
 import numpy as np
-from scipy.integrate import quad
-from scipy.optimize import root
+from scipy.optimize import fsolve
 
-# In this program, R2 and R_curv correspond to the arclengths of the ratchet 
-# in the xz and xy planes. 
+x, y, z, a, b, c = sym.symbols('x y z a b c')
 
-#%% Compute a, b, c, from alpha, R2, R_curv, theta
-def F(vars, tilt_angle, R2, R_curv):
-    a, b, c = vars
+sym.init_printing(use_unicode=True)
 
-    # Eqn 1
-    f1 = np.arctan(b/a) - tilt_angle
+y_fn = b*sym.sqrt(1 - (x/a)**2)
 
-    # Eqn 2
-    f2 = c**2/a - R2
+x_fn = a*sym.sqrt(1 - (z/c)**2)
 
-    # Eqn 3
-    f3 = b**2/a - R_curv
+dy = sym.diff(y_fn, x)
 
-    return np.array([f1, f2, f3])
+ddy = sym.diff(y_fn, x, 2)
 
-# Example parameters
-tilt_angle = 60*np.pi/180
-R2 = 0.4
-R_curv = 0.75
+ddx = sym.diff(x_fn, z, 2)
 
-# Initial guess
+x_tilt = -sym.sqrt(3)*a/2
 
-x0 = [1, 1, 1]
+x_curv = -sym.sqrt(7)*a/4
 
-sol = root(F, x0, args=(tilt_angle, R2, R_curv))
+slope_tilt_angle = dy.subs(x, x_tilt)
 
-print("Success or Failure:", sol.success)
-print("Solution (a, b, c):", sol.x[0], sol.x[1], sol.x[2])
+slope_R_curv = dy.subs(x, x_curv)
 
-a = sol.x[0]
-b = sol.x[1]
-c = sol.x[2]
+concavity_R_curv = ddy.subs(x, x_curv)
 
-#%% Compute alpha, R1, R2 for given values of a, c, theta
+R2 = ddx.subs(z, 0)
 
-theta = 40*np.pi/180
 
-tilt_angle = np.arctan(b/a)*180/np.pi
+R_curv = (1 + slope_R_curv**2)**(3/2) / concavity_R_curv
 
-integrand1 = lambda z: np.sqrt(1 + (a**2/c**2 - 1) * np.sin(z)**2)
-I1, _ = quad(integrand1, np.pi/2, 0)
-S1 = -c * I1
 
-S2 = a*theta
+exp_tilt_angle = 60
+exp_R_curv = 1
+exp_R2 = 0.4
+
+def func_yUp(x):
+    angle = np.arctan(np.sqrt(3)*x[1]/x[0]) * 180 / np.pi - exp_tilt_angle
+    R_curv = 27*x[0]**2*( 1 + (7/9)*x[1]**2/x[0]**2 )**(3/2) / (64*x[1]) - exp_R_curv
+    R2 = x[2]**2 / x[0] - exp_R2
+    return [angle, R_curv, R2]
+
+[a, b, c] = fsolve(func_yUp, [1, 1, 1])
+
+
+def func_zUp(x):
+    angle = np.arctan(np.sqrt(3)*x[2]/x[1]) * 180 / np.pi - 60
+    R_curv = 27*x[1]**2*( 1 + (7/9)*x[2]**2/x[1]**2 )**(3/2) / (64*x[2]) - 0.5
+    R2 = x[0]**2 / x[1] - 0.4
+    return [angle, R_curv, R2]
+
+root2 = fsolve(func_zUp, [1, 1, 1])
+
+
+
+
+
 
