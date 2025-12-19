@@ -82,10 +82,10 @@ class UnitConverter:
 
 
 if (__name__ == "__main__"):
-    units = UnitConverter(dx=0.01, dt=0.01, surface_tension=[0.0728,0.1])
+    units = UnitConverter(dx=0.000075, dt=0.00015, surface_tension=[0.0728, 0.0027])
     #units = UnitConverter(dx=0.0001, dt=4.120879120879121e-07, kg=1/2.472527472527473e-12)
     print("1 second in lattice units:", units.toLattice(1, s=1))
-    print("5cm in lattice units:", units.toLattice(0.05, m=1))
+    print("0.75mm in lattice units:", units.toLattice(0.00075, m=1))
     print("1.81e-5Pa*s of viscosity (air) in lattice units:", units.toLattice(1.81e-5, m=-1, s=-1, kg=1),"tau_air",3*units.toLattice(1.81e-5, m=-1, s=-1, kg=1)+0.5)
     print("1e-2Pa*s of viscosity (water) in lattice units:", units.toLattice(1e-2, m=-1, s=-1, kg=1),"tau_water",3*units.toLattice(1e-2, m=-1, s=-1, kg=1)+0.5)
     print("0.0728mN/ms of surface tension in lattice units:", units.toLattice(0.0728, m=0, s=-2, kg=1))

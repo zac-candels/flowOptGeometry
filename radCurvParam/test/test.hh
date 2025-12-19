@@ -190,9 +190,9 @@ void initParams(std::string inputfile) {
                   << " |f| = " << f.norm() << "\n";
     }
 
-    a1 = 15*x[0];
-    b1 = 15*x[1];
-    c1 = 15*x[2];
+    a1 = x[0];
+    b1 = x[1];
+    c1 = x[2];
 
     a2 = a1 + w;
     b2 = b1 + w;
