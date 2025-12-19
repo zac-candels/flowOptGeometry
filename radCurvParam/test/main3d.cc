@@ -1,4 +1,4 @@
-#include "main3d.hh"
+#include "test.hh"
 
 int main(int argc, char **argv) {
 // Initialisation for MPI parallelisationm you can ignore this

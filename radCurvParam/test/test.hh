@@ -6,12 +6,12 @@
 
 
 // System F(x)
-Eigen::Vector3d F(const Eigen::Vector3d& x, double alpha, double R_curv, double R2) {
+Eigen::Vector3d F(const Eigen::Vector3d& x, double tilt_angle, double R_curv, double R2) {
     double a = x(0), b = x(1), c = x(2);
     Eigen::Vector3d f;
 
     // f1
-    f(0) = std::atan(sqrt(3)*b/a) - alpha;
+    f(0) = std::atan(sqrt(3)*b/a) - tilt_angle;
 
     f(1) = 27*pow(a,2)*pow( 1 + (7.0/9.0)*pow(b/a, 2) , 3.0/2.0 ) / (64*b) - R_curv;
 
@@ -135,9 +135,6 @@ using Lattice = LatticePropertiesRuntime<NoParallel, 3>;
 
 // Function to initialise the parameters from an input file
 void initParams(std::string inputfile) {
-    //params.addParameter<int>(lx, "lx");
-    //params.addParameter<int>(ly, "ly");
-    //params.addParameter<int>(lz, "lz");
     params.addParameter<int>(timesteps, "timesteps");
     params.addParameter<int>(saveInterval, "saveInterval");
     params.addParameter<double>(radius, "radius");
@@ -154,12 +151,7 @@ void initParams(std::string inputfile) {
     params.addParameter<double>(tau1, "tau1");
     params.addParameter<double>(tau2, "tau2");
     params.addParameter<std::string>(datadir, "datadir");
-    params.addParameter<double>(postfraction, "postfraction");
-    params.addParameter<double>(postfractionZ, "postfractionZ");
     params.addParameter<double>(bodyforcex, "bodyforcex");
-    params.addParameter<int>(postheight, "postheight");
-    params.addParameter<int>(nbPost, "nbPost");
-    params.addParameter<int>(nbPostZ, "nbPostZ");
     params.addParameter<int>(equilibriumtimesteps, "equilibriumtimesteps");
     params.addParameter<double>(w, "w");
     params.addParameter<double>(tilt_angle, "tilt_angle");
@@ -229,13 +221,13 @@ void initParams(std::string inputfile) {
     z_c = (int)(lz/2);
     
 
-    apertureHeight = 5;
+    apertureHeight = 5 + b1/2;
     apertureWidth = 2*apertureHeight;
     apWidth2 = (int)(apertureWidth/2);
 
     reservoirHeight = int(0.3 * ly);
 
-    y0_val = reservoirHeight + apertureHeight - b1/2;
+    y0_val = reservoirHeight + apertureHeight;
 
     x_pos_first_row_front = a2;
     x_pos_second_row = x_pos_first_row_front + 18;
@@ -314,7 +306,7 @@ int initBoundary(const int k) {
             ratchet_condition_arr[i][j][0] = pow(c1p*b1p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a1p*c1p,2)*pow(y-y0_val,2) + pow(a1p*b1p,2)*pow(z-center_coords_arr[i][j][1],2) > pow(a1p*b1p*c1p,2);
             ratchet_condition_arr[i][j][1] = pow(c2p*b2p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a2p*c2p,2)*pow(y-y0_val,2) + pow(a2p*b2p,2)*pow(z-center_coords_arr[i][j][1],2) <= pow(a2p*b2p*c2p,2);
             ratchet_condition_arr[i][j][2] = x - center_coords_arr[i][j][0] > 0;
-            ratchet_condition_arr[i][j][3] = y - y0_val > 0;
+            ratchet_condition_arr[i][j][3] = y - y0_val - b1/2 > 0;
             ratchet_condition_arr[i][j][4] = atan( (x-center_coords_arr[i][j][0]) / abs(z-center_coords_arr[i][j][1]) ) > (pi/2 - angular_width*pi/180);
         }
     }
@@ -333,7 +325,7 @@ int initBoundary(const int k) {
 
     bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
 
-    if( ( yy >= reservoirHeight ) && ( yy <= reservoirHeight + apertureHeight - 2 ) && !cond1 )
+    if( ( yy >= reservoirHeight ) && ( yy <= reservoirHeight + apertureHeight + b1/2 +1 ) && !cond1 )
     {
         return 2;
     }
