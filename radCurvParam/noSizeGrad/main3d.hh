@@ -112,6 +112,7 @@ int x_pos_first_row_front;
 int x_pos_first_row_behind;
 int x_pos_second_row;
 int z_pos_first_row;
+int z_pos_second_row;
 
 int apertureHeight;
 int apertureWidth;
@@ -232,7 +233,8 @@ void initParams(std::string inputfile) {
     x_pos_first_row_front = a2;
     x_pos_second_row = x_pos_first_row_front + 18;
     x_pos_first_row_behind = x_c - a2/2;
-    z_pos_first_row = z_c - (int)(3*row_to_row_dist/4);
+    z_pos_first_row = z_c - (int)(row_to_row_dist/2);
+    
 
     // Initialise free energy parameters from the surface tension and interface width
     A = 12 * surfacetension / interfacewidth;
