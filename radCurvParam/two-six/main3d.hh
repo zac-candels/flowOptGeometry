@@ -204,16 +204,16 @@ void initParams(std::string inputfile) {
     total_num_ratchets = Num_ratchets_per_row * Num_rows_of_ratchets;
 
     offset = 15;
-    channel_length = ( Num_ratchets_per_row - 3 )*( std::max(a2,c2) + inter_ratchet_dist );
+    channel_length = ( Num_ratchets_per_row )*( std::max(a2,c2) + 0.6*inter_ratchet_dist );
     lx = (int)1*channel_length;
     //lx = 250;
     std::cout << "lx = " << lx << std::endl;
 
-    ly = (int)6*b2;
+    ly = (int)2.5*b2;
     //ly = ((ly + 99) / 100) * 100;
     std::cout << "ly = " << ly << std::endl;
 
-    lz = std::max(a2, b2) + 2.0*row_to_row_dist;
+    lz = 2*std::max(a2, b2) + 0.6*row_to_row_dist;
     //lz = ((lz + 99) / 100) * 100;
 
     std::cout << "lz = " << lz << std::endl;
@@ -222,11 +222,11 @@ void initParams(std::string inputfile) {
     z_c = (int)(lz/2);
     
 
-    apertureHeight = 5 + b1/2;
-    apertureWidth = 1*apertureHeight;
+    apertureHeight = 5;
+    apertureWidth = (int)(b1/3);
     apWidth2 = (int)(apertureWidth/2);
 
-    reservoirHeight = int(0.3 * ly);
+    reservoirHeight = int(0.2 * ly);
 
     y0_val = reservoirHeight + apertureHeight;
 
@@ -244,6 +244,7 @@ void initParams(std::string inputfile) {
     Lattice::init(lx, ly, lz);
 
 }
+
 
 
 // Function used to define the solid geometry
