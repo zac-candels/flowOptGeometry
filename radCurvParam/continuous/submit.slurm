@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=noSizeGrad  # Job name
+#SBATCH --job-name=continuous  # Job name
 #SBATCH --output=output.log # Standard output log file
 #SBATCH --error=error.log   # Standard error log file
 #SBATCH --time=24:00:00           # Time limit hrs:min:sec

@@ -272,44 +272,72 @@ int initBoundary(const int k) {
 
     double size_fac;
     int anchor_pt;
-    for(int i = 0; i <  Num_rows_of_ratchets; i++)
+        for(int i = 0; i <  Num_rows_of_ratchets; i++)
     {
 
         for (int j = 0; j < Num_ratchets_per_row; j++)
         {
-            //size_fac = 0.04074187*sin(lx*j/3)+1.04074187;
-            size_fac = 1.6;
-            a1p = size_fac*a1;
-            a2p = size_fac*a2;
-            b1p = size_fac*b1;
-            b2p = size_fac*b2;
-            c1p = size_fac*c1;
-            c2p = size_fac*c2;
-
-            if(i == 0)
+            if( (j == 4) || (j== 5)  )
             {
-                int anchor_pt = x_pos_first_row_front + (j)*(tip_to_tip_dist);
-                center_coords_arr[i][j][0] = anchor_pt;
-                //std::cout << "x_c = " << center_coords_arr[i][j][0] << std::endl;
-            }
-            
-            if(i == 1)
-            {
-                int anchor_pt = x_pos_second_row + (j)*(tip_to_tip_dist);
-                center_coords_arr[i][j][0] = anchor_pt;
-            }
+                size_fac = 1.6;
+                a1p = size_fac*a1;
+                a2p = size_fac*a2;
+                b1p = size_fac*b1;
+                b2p = size_fac*b2;
+                c1p = size_fac*c1;
+                c2p = size_fac*c2;
 
+                if(i == 0)
+                {
+                    int anchor_pt = x_pos_first_row_front + (j)*(tip_to_tip_dist);
+                    center_coords_arr[i][j][0] = anchor_pt;
+                }
+                
+                if(i == 1)
+                {
+                    int anchor_pt = x_pos_second_row + (j)*(tip_to_tip_dist);
+                    center_coords_arr[i][j][0] = anchor_pt;
+                }
+
+                
             
-          
+
+
+                center_coords_arr[i][j][1] = z_pos_first_row + i*row_to_row_dist;
+
+                ratchet_condition_arr[i][j][0] = pow(c1p*b1p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a1p*c1p,2)*pow(y-y0_val,2) + pow(a1p*b1p,2)*pow(z-center_coords_arr[i][j][1],2) > pow(a1p*b1p*c1p,2);
+                ratchet_condition_arr[i][j][1] = pow(c2p*b2p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a2p*c2p,2)*pow(y-y0_val,2) + pow(a2p*b2p,2)*pow(z-center_coords_arr[i][j][1],2) <= pow(a2p*b2p*c2p,2);
+                ratchet_condition_arr[i][j][2] = x - center_coords_arr[i][j][0] > 0;
+                ratchet_condition_arr[i][j][3] = y - y0_val - b1/2 > 0;
+                ratchet_condition_arr[i][j][4] = atan( (x-center_coords_arr[i][j][0]) / abs(z-center_coords_arr[i][j][1]) ) > (pi/2 - angular_width*pi/180);
+            }
+            else
+            {
+
+                if(i == 0)
+                {
+                    int anchor_pt = x_pos_first_row_front + (j)*(tip_to_tip_dist);
+                    center_coords_arr[i][j][0] = anchor_pt;
+                }
+                
+                if(i == 1)
+                {
+                    int anchor_pt = x_pos_second_row + (j)*(tip_to_tip_dist);
+                    center_coords_arr[i][j][0] = anchor_pt;
+                }
+
+                
+            
 
 
             center_coords_arr[i][j][1] = z_pos_first_row + i*row_to_row_dist;
 
-            ratchet_condition_arr[i][j][0] = pow(c1p*b1p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a1p*c1p,2)*pow(y-y0_val,2) + pow(a1p*b1p,2)*pow(z-center_coords_arr[i][j][1],2) > pow(a1p*b1p*c1p,2);
-            ratchet_condition_arr[i][j][1] = pow(c2p*b2p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a2p*c2p,2)*pow(y-y0_val,2) + pow(a2p*b2p,2)*pow(z-center_coords_arr[i][j][1],2) <= pow(a2p*b2p*c2p,2);
+            ratchet_condition_arr[i][j][0] = pow(c1*b1, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a1*c1,2)*pow(y-y0_val,2) + pow(a1*b1,2)*pow(z-center_coords_arr[i][j][1],2) > pow(a1*b1*c1,2);
+            ratchet_condition_arr[i][j][1] = pow(c2*b2, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a2*c2,2)*pow(y-y0_val,2) + pow(a2*b2,2)*pow(z-center_coords_arr[i][j][1],2) <= pow(a2*b2*c2,2);
             ratchet_condition_arr[i][j][2] = x - center_coords_arr[i][j][0] > 0;
             ratchet_condition_arr[i][j][3] = y - y0_val - b1/2 > 0;
             ratchet_condition_arr[i][j][4] = atan( (x-center_coords_arr[i][j][0]) / abs(z-center_coords_arr[i][j][1]) ) > (pi/2 - angular_width*pi/180);
+            }
         }
     }
 

@@ -277,8 +277,7 @@ int initBoundary(const int k) {
 
         for (int j = 0; j < Num_ratchets_per_row; j++)
         {
-            //size_fac = 0.04074187*sin(lx*j/3)+1.04074187;
-            size_fac = 1.6;
+            size_fac = 1;
             a1p = size_fac*a1;
             a2p = size_fac*a2;
             b1p = size_fac*b1;
