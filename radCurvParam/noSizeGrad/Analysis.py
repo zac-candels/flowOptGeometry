@@ -24,7 +24,7 @@ tend = struct.unpack('=i', HeaderFile.read(4))[0]
 tinc = struct.unpack('=i', HeaderFile.read(4))[0]
 
 # Slice in the z direction to plot
-zslice = int(LZ/2)
+zslice = int(LZ/4)
 
 # Where to save the plots
 outDirName = "figures"
@@ -73,13 +73,6 @@ for t in range(tstart, tend + 1, tinc):
     phi = rgbv[:-19, :]
     rgbdiss = np.flip(dissipation[:, :, zslice]).T
 
-    mass = 0
-    for i in range(len(phi[:,0])):
-        for j in range(len(phi[:,1])):
-            mass += rgbv[i,j]
-    
-    print("mass = ", mass)
-
 
     im = ax.imshow(np.fliplr(rgbv), interpolation='nearest', origin='upper')
     #im2 = ax[1].imshow(rgbdiss, interpolation='nearest', origin='upper')
@@ -109,7 +102,7 @@ for t in range(tstart, tend + 1, tinc):
 
     # Plot quiver. origin='upper' was used in imshow, and these arrays are in the same indexing,
     # so no component sign flip is required.
-    #ax.quiver(Xq, Yq, Uq, Vq, width=0.0008, headwidth=7.5, headlength=7.5, angles='xy', scale_units='xy')
+    ax.quiver(Xq, Yq, Uq, Vq, width=0.0008, headwidth=7.5, headlength=7.5, angles='xy', scale_units='xy')
    
 
     #fig.colorbar(im2, orientation="horizontal")

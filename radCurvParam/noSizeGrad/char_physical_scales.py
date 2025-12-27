@@ -4,7 +4,9 @@
 # This is chosen by the user. Here we will take a value motivated 
 # by the paper by Yehuda and Bat-El
 
-l_c = 7.5e-5
+l_c = 2e-5
+
+rho_c = 1000
 
 # Now we must choose the non-dimensional relaxation time, tau_star. 
 # A simple procedure is to first try some value \tau_star > 0.5 such that 
@@ -22,6 +24,8 @@ nu = 10e-6
 
 t_c = (1./3.)*(tau - 0.5)*l_c**2 / nu 
 
+print("t_c = ", t_c)
+
 # Now, we have to determine u_{max} in lattice units. Since 
 # we now have reference length and time scales, 
 # we have 
@@ -32,3 +36,14 @@ U_c = l_c / t_c
 
 u_lu = u_max / U_c
 
+print("u_max in lattice units is", u_lu)
+
+# If u_lu < 1/3, we're ok. Now, we also need
+# the conversion factor for the surface tension.
+# The conversion factor is \sigma_c = \rho_c * l_c^3 * t_c^{-2}. 
+
+sigma_c = rho_c * l_c**3 * t_c**(-2)
+
+sigma_bar = 0.0728 / sigma_c
+
+print("sigma_bar = ", sigma_bar)
