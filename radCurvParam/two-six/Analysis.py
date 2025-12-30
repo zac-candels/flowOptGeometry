@@ -24,7 +24,7 @@ tend = struct.unpack('=i', HeaderFile.read(4))[0]
 tinc = struct.unpack('=i', HeaderFile.read(4))[0]
 
 # Slice in the z direction to plot
-zslice = int(LZ/2)
+zslice = int(LZ/4)
 
 # Where to save the plots
 outDirName = "figures"

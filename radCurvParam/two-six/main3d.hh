@@ -209,11 +209,11 @@ void initParams(std::string inputfile) {
     //lx = 250;
     std::cout << "lx = " << lx << std::endl;
 
-    ly = (int)2.5*b2;
+    ly = (int)4*b2;
     //ly = ((ly + 99) / 100) * 100;
     std::cout << "ly = " << ly << std::endl;
 
-    lz = 2*std::max(a2, b2) + 0.6*row_to_row_dist;
+    lz = 2*std::max(a2, b2) + 0.75*row_to_row_dist;
     //lz = ((lz + 99) / 100) * 100;
 
     std::cout << "lz = " << lz << std::endl;
@@ -407,7 +407,7 @@ double initFluid(const int k) {
     int posx = x_c;
     int posy = reservoirHeight + apertureHeight;
     int posz = z_c;
-    double radius = 0.85*2*b2;
+    double radius = 1.3*b2;
 
     double dist = std::max( abs(yy - posy), abs(xx - posx) );
 
