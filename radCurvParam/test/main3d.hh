@@ -102,6 +102,7 @@ int channel_width;
 double channel_height;
 double channel_length;
 double y0_val = channel_height;
+double ellipsoidCenter;
 
 double constraining_plate_height;
 double constraining_plate_length;
@@ -234,9 +235,9 @@ void initParams(std::string inputfile) {
 
     reservoirHeight = int(0.3 * ly);
 
-    y0_val = reservoirHeight;
+    ellipsoidCenter = reservoirHeight;
     apertureHeight = b1/2;
-    ratchetBottom = y0_val + apertureHeight;
+    ratchetBottom = ellipsoidCenter + apertureHeight;
 
     x_pos_first_row_front = a2;
     x_pos_second_row = x_pos_first_row_front + 18;
@@ -334,8 +335,8 @@ int initBoundary(const int k) {
 
             center_coords_arr[i][j][1] = z_pos_first_row + i*row_to_row_dist;
 
-            ratchet_condition_arr[i][j][0] = pow(c1p*b1p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a1p*c1p,2)*pow(y-y0_val,2) + pow(a1p*b1p,2)*pow(z-center_coords_arr[i][j][1],2) > pow(a1p*b1p*c1p,2);
-            ratchet_condition_arr[i][j][1] = pow(c2p*b2p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a2p*c2p,2)*pow(y-y0_val,2) + pow(a2p*b2p,2)*pow(z-center_coords_arr[i][j][1],2) <= pow(a2p*b2p*c2p,2);
+            ratchet_condition_arr[i][j][0] = pow(c1p*b1p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a1p*c1p,2)*pow(y-ellipsoidCenter,2) + pow(a1p*b1p,2)*pow(z-center_coords_arr[i][j][1],2) > pow(a1p*b1p*c1p,2);
+            ratchet_condition_arr[i][j][1] = pow(c2p*b2p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a2p*c2p,2)*pow(y-ellipsoidCenter,2) + pow(a2p*b2p,2)*pow(z-center_coords_arr[i][j][1],2) <= pow(a2p*b2p*c2p,2);
             ratchet_condition_arr[i][j][2] = x - center_coords_arr[i][j][0] > 0;
             ratchet_condition_arr[i][j][3] = y - ratchetBottom > 0;
             ratchet_condition_arr[i][j][4] = atan( (x-center_coords_arr[i][j][0]) / abs(z-center_coords_arr[i][j][1]) ) > (pi/2 - angular_width*pi/180);
@@ -356,7 +357,9 @@ int initBoundary(const int k) {
 
     bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
 
-    if( ( yy >= reservoirHeight ) && ( yy <= y0_val + b1/2 +1 ) && !cond1 )
+    
+
+    if( ( yy >= reservoirHeight ) && ( yy <= ratchetBottom +1 ) && !cond1 )
     {
         return 2;
     }
