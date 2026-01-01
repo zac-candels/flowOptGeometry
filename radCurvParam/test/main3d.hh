@@ -212,12 +212,16 @@ void initParams(std::string inputfile) {
     //lx = 250;
     std::cout << "lx = " << lx << std::endl;
 
-    ly = (int)4*b2;
+    ly = (int)3*b2;
     //ly = ((ly + 99) / 100) * 100;
     std::cout << "ly = " << ly << std::endl;
 
     lz = 2*std::max(a2, b2) + 0.75*row_to_row_dist;
     //lz = ((lz + 99) / 100) * 100;
+
+    lx = ((lx + 9) / 10) * 10;
+    ly = ((ly + 9) / 10) * 10;
+    lz = ((lz + 9) / 10) * 10;
 
     std::cout << "lz = " << lz << std::endl;
 

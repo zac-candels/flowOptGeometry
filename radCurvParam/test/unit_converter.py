@@ -82,7 +82,7 @@ class UnitConverter:
 
 
 if (__name__ == "__main__"):
-    units = UnitConverter(dx=7.5e-5, dt=0.00015, surface_tension=[0.0728, 0.0027])
+    units = UnitConverter(dx=2e-5, dt=0.00015, surface_tension=[0.0728, 0.0027])
     #units = UnitConverter(dx=0.0001, dt=4.120879120879121e-07, kg=1/2.472527472527473e-12)
     print("1 second in lattice units:", units.toLattice(1, s=1))
     print("R_curv = 0.75mm in lattice units:", units.toLattice(0.00075, m=1))
