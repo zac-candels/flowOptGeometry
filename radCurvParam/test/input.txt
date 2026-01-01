@@ -21,6 +21,6 @@ R2=20
 angular_width=30.0 
 tip_to_tip_dist=95
 row_to_row_dist=100
-Num_ratchets_per_row=2
+Num_ratchets_per_row=1
 Num_rows_of_ratchets=2
 sizeGradType="continuous"

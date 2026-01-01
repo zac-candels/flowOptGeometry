@@ -117,6 +117,7 @@ int z_pos_second_row;
 int apertureHeight;
 int apertureWidth;
 int reservoirHeight;
+int ratchetBottom;
 
 std::string sizeGradType;
 
@@ -212,7 +213,7 @@ void initParams(std::string inputfile) {
     //lx = 250;
     std::cout << "lx = " << lx << std::endl;
 
-    ly = (int)3*b2;
+    ly = (int)1.2*b2;
     //ly = ((ly + 99) / 100) * 100;
     std::cout << "ly = " << ly << std::endl;
 
@@ -228,14 +229,14 @@ void initParams(std::string inputfile) {
     x_c = (int)(lx/2);
     z_c = (int)(lz/2);
     
-
-    apertureHeight = 5;
     apertureWidth = (int)(b1/3);
     apWidth2 = (int)(apertureWidth/2);
 
-    reservoirHeight = int(0.2 * ly);
+    reservoirHeight = int(0.3 * ly);
 
-    y0_val = reservoirHeight + apertureHeight;
+    y0_val = reservoirHeight;
+    apertureHeight = b1/2;
+    ratchetBottom = y0_val + apertureHeight;
 
     x_pos_first_row_front = a2;
     x_pos_second_row = x_pos_first_row_front + 18;
@@ -336,7 +337,7 @@ int initBoundary(const int k) {
             ratchet_condition_arr[i][j][0] = pow(c1p*b1p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a1p*c1p,2)*pow(y-y0_val,2) + pow(a1p*b1p,2)*pow(z-center_coords_arr[i][j][1],2) > pow(a1p*b1p*c1p,2);
             ratchet_condition_arr[i][j][1] = pow(c2p*b2p, 2)*pow(-x+center_coords_arr[i][j][0],2) + pow(a2p*c2p,2)*pow(y-y0_val,2) + pow(a2p*b2p,2)*pow(z-center_coords_arr[i][j][1],2) <= pow(a2p*b2p*c2p,2);
             ratchet_condition_arr[i][j][2] = x - center_coords_arr[i][j][0] > 0;
-            ratchet_condition_arr[i][j][3] = y - y0_val - b1/2 > 0;
+            ratchet_condition_arr[i][j][3] = y - ratchetBottom > 0;
             ratchet_condition_arr[i][j][4] = atan( (x-center_coords_arr[i][j][0]) / abs(z-center_coords_arr[i][j][1]) ) > (pi/2 - angular_width*pi/180);
         }
     }
@@ -355,16 +356,16 @@ int initBoundary(const int k) {
 
     bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
 
-    if( ( yy >= reservoirHeight ) && ( yy <= reservoirHeight + apertureHeight + b1/2 +1 ) && !cond1 )
+    if( ( yy >= reservoirHeight ) && ( yy <= y0_val + b1/2 +1 ) && !cond1 )
     {
         return 2;
     }
 
-    if( ( yy >= reservoirHeight + apertureHeight -1 ) && ( yy <= reservoirHeight + apertureHeight ) && !cond1 )
-    {
-        return 1;
+    // if( ( yy >= reservoirHeight + apertureHeight -1 ) && ( yy <= reservoirHeight + apertureHeight ) && !cond1 )
+    // {
+    //     return 1;
 
-    }
+    // }
     
 
     return 0;
