@@ -1,6 +1,6 @@
 theta=30 #contact angle
-saveInterval=1 #how frequently to save order parameter, velocity etc
-timesteps=3 #total number of iterations
+saveInterval=2000 #how frequently to save order parameter, velocity etc
+timesteps=1000000 #total number of iterations
 posx=150 #droplet position in the x direction
 posy=10 #droplet position in the y direction
 posz=75 #droplet position in the z direction

@@ -218,6 +218,10 @@ void initParams(std::string inputfile) {
 
     std::cout << "lz = " << lz << std::endl;
 
+    lx = ((lx + 9) / 10) * 10;
+    ly = ((ly + 9) / 10) * 10;
+    lz = ((lz + 9) / 10) * 10;
+
     x_c = (int)(lx/2);
     z_c = (int)(lz/2);
     

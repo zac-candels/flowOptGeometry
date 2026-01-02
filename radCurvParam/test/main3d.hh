@@ -212,11 +212,9 @@ void initParams(std::string inputfile) {
     channel_length = ( Num_ratchets_per_row )*( std::max(a2,c2) + 0.6*inter_ratchet_dist );
     lx = (int)1*channel_length;
     //lx = 250;
-    std::cout << "lx = " << lx << std::endl;
 
-    ly = (int)1.2*b2;
+    ly = (int)2.5*b2;
     //ly = ((ly + 99) / 100) * 100;
-    std::cout << "ly = " << ly << std::endl;
 
     lz = 2*std::max(a2, b2) + 0.75*row_to_row_dist;
     //lz = ((lz + 99) / 100) * 100;
@@ -225,6 +223,8 @@ void initParams(std::string inputfile) {
     ly = ((ly + 9) / 10) * 10;
     lz = ((lz + 9) / 10) * 10;
 
+    std::cout << "lx = " << lx << std::endl;
+    std::cout << "ly = " << ly << std::endl;
     std::cout << "lz = " << lz << std::endl;
 
     x_c = (int)(lx/2);
@@ -233,11 +233,10 @@ void initParams(std::string inputfile) {
     apertureWidth = (int)(b1/3);
     apWidth2 = (int)(apertureWidth/2);
 
-    reservoirHeight = int(0.3 * ly);
+    ellipsoidCenter = int(0.1 * ly);
 
-    ellipsoidCenter = reservoirHeight;
-    apertureHeight = b1/2;
-    ratchetBottom = ellipsoidCenter + apertureHeight;
+    reservoirHeight = ellipsoidCenter + 10;
+    ratchetBottom = ellipsoidCenter + b1/2;
 
     x_pos_first_row_front = a2;
     x_pos_second_row = x_pos_first_row_front + 18;
@@ -357,18 +356,16 @@ int initBoundary(const int k) {
 
     bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
 
-    
-
-    if( ( yy >= reservoirHeight ) && ( yy <= ratchetBottom +1 ) && !cond1 )
+    if( ( yy >= reservoirHeight ) && ( yy <= ratchetBottom ) && !cond1 )
     {
         return 2;
     }
 
-    // if( ( yy >= reservoirHeight + apertureHeight -1 ) && ( yy <= reservoirHeight + apertureHeight ) && !cond1 )
-    // {
-    //     return 1;
+    if( ( yy >= ratchetBottom -1 ) && ( yy <= ratchetBottom + 1 ) && !cond1 )
+    {
+        return 1;
 
-    // }
+    }
     
 
     return 0;

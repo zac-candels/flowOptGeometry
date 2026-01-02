@@ -216,6 +216,10 @@ void initParams(std::string inputfile) {
     lz = 2*std::max(a2, b2) + 0.75*row_to_row_dist;
     //lz = ((lz + 99) / 100) * 100;
 
+    lx = ((lx + 9) / 10) * 10;
+    ly = ((ly + 9) / 10) * 10;
+    lz = ((lz + 9) / 10) * 10;
+
     std::cout << "lz = " << lz << std::endl;
 
     x_c = (int)(lx/2);

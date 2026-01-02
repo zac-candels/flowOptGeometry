@@ -6,7 +6,7 @@
 #SBATCH --partition=standard      # Partition name
 #SBATCH --account=ec288-wetting
 #SBATCH --qos=lowpriority
-#SBATCH --ntasks=1               # Number of tasks (processes)
+#SBATCH --ntasks=5            # Number of tasks (processes)
 #SBATCH --cpus-per-task=280      # Number of CPU cores per task
 
 # ===============================
