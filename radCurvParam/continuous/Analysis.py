@@ -22,6 +22,7 @@ ndim = struct.unpack('=i', HeaderFile.read(4))[0]
 tstart = 0
 tend = struct.unpack('=i', HeaderFile.read(4))[0]
 tinc = struct.unpack('=i', HeaderFile.read(4))[0]
+tinc = 4000
 
 # Slice in the z direction to plot
 zslice = int(LZ/4)

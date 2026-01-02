@@ -213,7 +213,7 @@ void initParams(std::string inputfile) {
     lx = (int)1*channel_length;
     //lx = 250;
 
-    ly = (int)2.5*b2;
+    ly = (int)3*b2;
     //ly = ((ly + 99) / 100) * 100;
 
     lz = 2*std::max(a2, b2) + 0.75*row_to_row_dist;
@@ -371,63 +371,68 @@ int initBoundary(const int k) {
     return 0;
 }
 
-//Initialises the fluid with a bulk value of 1 for the droplet and a bulk value of 0 for air
-double initFluid(const int k) {
-    // x coordinate of the lattice node k
-    int xx = computeXGlobal<Lattice>(k);
-    // y coordinate of the lattice node k
-    int yy = computeY(ly, lz, k);
-    // z coordinate of the lattice node k
-    int zz = computeZ(ly, lz, k); // Uncomment for 3D
-
-    double right_reservoir = lx - (reservoir_length - reservoir_length/2);
-
-    // Radial distance from the centre of the droplet at (posx, posy)
-    //double rr2 = (xx - posx) * (xx - posx) + (yy - posy) * (yy - posy);
-    double rr2 = (xx - posx) * (xx - posx) + (yy - posy) * (yy - posy) + (zz - posz) * (zz - posz); // Switch these for 3D
-
-    // Smooth droplet
-
-    int x_c = (int)(lx/2);
-    int z_c = (int)(lz/2);
-    int apWidth2 = (int)(apertureWidth/2);
-
-    bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
-    
-    if( ( yy <= reservoirHeight ) )
-    {
-        return 1;
-    }
-
-    if( ( yy <= reservoirHeight + apertureHeight + 1 ) && cond1 )
-    {
-        return 1;
-    }
-
-    int posx = x_c;
-    int posy = reservoirHeight + apertureHeight;
-    int posz = z_c;
-    double radius = 1.3*b2;
-
-    double dist = std::max( abs(yy - posy), abs(xx - posx) );
-
-
-
-    if( ( yy > reservoirHeight + apertureHeight ) ) //&& ( zz >= z_c - apWidth2 ) && ( zz <= z_c + apWidth2 ) )
-    {
-        //return 0.5 - 0.5*tanh(2*(yy - ( reservoirHeight + apertureHeight + 3 ) )/4.0);
-        if(initBoundary(k) == 1)
-        {
-            return 0;
-        }
-        else
-        {
-            return (0.5 - 0.5 * tanh(2 * (dist - radius) / interfacewidth ));
-        }
-    }
-
-    return 0;
+double initFluid(const int k)
+{
+    return 1;
 }
+
+//Initialises the fluid with a bulk value of 1 for the droplet and a bulk value of 0 for air
+//double initFluid(const int k) {
+    // // x coordinate of the lattice node k
+    // int xx = computeXGlobal<Lattice>(k);
+    // // y coordinate of the lattice node k
+    // int yy = computeY(ly, lz, k);
+    // // z coordinate of the lattice node k
+    // int zz = computeZ(ly, lz, k); // Uncomment for 3D
+
+    // double right_reservoir = lx - (reservoir_length - reservoir_length/2);
+
+    // // Radial distance from the centre of the droplet at (posx, posy)
+    // //double rr2 = (xx - posx) * (xx - posx) + (yy - posy) * (yy - posy);
+    // double rr2 = (xx - posx) * (xx - posx) + (yy - posy) * (yy - posy) + (zz - posz) * (zz - posz); // Switch these for 3D
+
+    // // Smooth droplet
+
+    // int x_c = (int)(lx/2);
+    // int z_c = (int)(lz/2);
+    // int apWidth2 = (int)(apertureWidth/2);
+
+    // bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
+    
+    // if( ( yy <= reservoirHeight ) )
+    // {
+    //     return 1;
+    // }
+
+    // if( ( yy <= reservoirHeight + apertureHeight + 1 ) && cond1 )
+    // {
+    //     return 1;
+    // }
+
+    // int posx = x_c;
+    // int posy = reservoirHeight + apertureHeight;
+    // int posz = z_c;
+    // double radius = 1.3*b2;
+
+    // double dist = std::max( abs(yy - posy), abs(xx - posx) );
+
+
+
+    // if( ( yy > reservoirHeight + apertureHeight ) ) //&& ( zz >= z_c - apWidth2 ) && ( zz <= z_c + apWidth2 ) )
+    // {
+    //     //return 0.5 - 0.5*tanh(2*(yy - ( reservoirHeight + apertureHeight + 3 ) )/4.0);
+    //     if(initBoundary(k) == 1)
+    //     {
+    //         return 0;
+    //     }
+    //     else
+    //     {
+    //         return (0.5 - 0.5 * tanh(2 * (dist - radius) / interfacewidth ));
+    //     }
+    // }
+
+    // return 0;
+//}
 
 //
 ///////// Simulation details

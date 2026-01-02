@@ -40,11 +40,11 @@ int main(int argc, char **argv) {
             if (mpi.rank == 0) std::cout << "Saving at timestep " << timestep << "." << std::endl;
 
             saver.saveBoundaries(timestep);
-            saver.saveParameter<ChemicalPotential<>>(timestep);
-            saver.saveParameter<Density<>>(timestep);
-            saver.saveParameter<Pressure<>>(timestep);
+            //saver.saveParameter<ChemicalPotential<>>(timestep);
+            //saver.saveParameter<Density<>>(timestep);
+            //saver.saveParameter<Pressure<>>(timestep);
             saver.saveParameter<OrderParameter<>>(timestep);
-            saver.saveParameter<ViscousDissipation<>>(timestep);
+            //saver.saveParameter<ViscousDissipation<>>(timestep);
             saver.saveParameter<Velocity<>, Lattice::NDIM>(timestep);
         }
         
