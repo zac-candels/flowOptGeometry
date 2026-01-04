@@ -36,10 +36,12 @@ frame_files = []
 
 for t in range(tstart, tend + 1, tinc):
     # Boundary file
-    file_name = datadir + f"BoundaryLabels_t{t}.mat"
-    with open(file_name, 'rb') as f:
-        dat = f.read()
-    solid = np.ndarray((LX, LY, LZ), '=i', dat, 0, (4 * LY * LZ, 4 * LZ, 4))
+
+    if t == tstart:
+        file_name = datadir + f"BoundaryLabels_t{t}.mat"
+        with open(file_name, 'rb') as f:
+            dat = f.read()
+        solid = np.ndarray((LX, LY, LZ), '=i', dat, 0, (4 * LY * LZ, 4 * LZ, 4))
 
     # Order parameter
     file_name = datadir + f"OrderParameter_t{t}.mat"
@@ -51,13 +53,13 @@ for t in range(tstart, tend + 1, tinc):
     liquid[np.logical_or(solid == 3, solid == 2)] = 0.5
 
     # Viscous dissipation
-    file_name = datadir + f"ViscousDissipation_t{t}.mat"
-    with open(file_name, 'rb') as f:
-        dat = f.read()
-    D = np.ndarray((LX, LY, LZ), '=d', dat, 0, (8 * LY * LZ, 8 * LZ, 8))
-    dissipation = np.array(D[:,:])
-    dissipation[np.logical_or(solid == 1, solid == -1)] = 0
-    dissipation[np.logical_or(solid == 3, solid == 2)] = 0
+    # file_name = datadir + f"ViscousDissipation_t{t}.mat"
+    # with open(file_name, 'rb') as f:
+    #     dat = f.read()
+    # D = np.ndarray((LX, LY, LZ), '=d', dat, 0, (8 * LY * LZ, 8 * LZ, 8))
+    # dissipation = np.array(D[:,:])
+    # dissipation[np.logical_or(solid == 1, solid == -1)] = 0
+    # dissipation[np.logical_or(solid == 3, solid == 2)] = 0
 
     # Velocity field
     file_name = datadir + f"Velocity_t{t}.mat"
@@ -72,7 +74,7 @@ for t in range(tstart, tend + 1, tinc):
 
     rgbv = np.flip(liquid[:, :, zslice]).T
     phi = rgbv[:-19, :]
-    rgbdiss = np.flip(dissipation[:, :, zslice]).T
+    #rgbdiss = np.flip(dissipation[:, :, zslice]).T
 
     mass = 0
     for i in range(len(phi[:,0])):

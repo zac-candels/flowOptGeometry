@@ -200,6 +200,10 @@ void initParams(std::string inputfile) {
     b1 = x[1];
     c1 = x[2];
 
+    std::cout << "a1 original = " << a1 << std::endl; 
+    std::cout << "b1 original = " << b1 << std::endl;
+    std::cout << "c1 original = " << c1 << std::endl;
+
     a2 = a1 + w;
     b2 = b1 + w;
     c2 = c1 + w;
@@ -213,7 +217,7 @@ void initParams(std::string inputfile) {
     lx = (int)1*channel_length;
     //lx = 250;
 
-    ly = (int)3*b2;
+    ly = (int)2*b2;
     //ly = ((ly + 99) / 100) * 100;
 
     lz = 2*std::max(a2, b2) + 0.75*row_to_row_dist;
@@ -295,7 +299,7 @@ int initBoundary(const int k) {
             }
             else if (sizeGradType == "two-six")
             {
-                if ( j % 8 < 2 )
+                if ( (j + 4) % 8 < 2 )
                 {
                     size_fac = 1.6;
                 }

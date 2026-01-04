@@ -35,10 +35,11 @@ frame_files = []
 
 for t in range(tstart, tend + 1, tinc):
     # Boundary file
-    file_name = datadir + f"BoundaryLabels_t{t}.mat"
-    with open(file_name, 'rb') as f:
-        dat = f.read()
-    solid = np.ndarray((LX, LY, LZ), '=i', dat, 0, (4 * LY * LZ, 4 * LZ, 4))
+    if t == tstart:
+        file_name = datadir + f"BoundaryLabels_t{t}.mat"
+        with open(file_name, 'rb') as f:
+            dat = f.read()
+        solid = np.ndarray((LX, LY, LZ), '=i', dat, 0, (4 * LY * LZ, 4 * LZ, 4))
 
     # Order parameter
     file_name = datadir + f"OrderParameter_t{t}.mat"
@@ -49,21 +50,14 @@ for t in range(tstart, tend + 1, tinc):
     liquid[np.logical_or(solid == 1, solid == -1)] = 0.5
     liquid[np.logical_or(solid == 3, solid == 2)] = 0.5
 
-    # Viscous dissipation
-    file_name = datadir + f"ViscousDissipation_t{t}.mat"
-    with open(file_name, 'rb') as f:
-        dat = f.read()
-    D = np.ndarray((LX, LY, LZ), '=d', dat, 0, (8 * LY * LZ, 8 * LZ, 8))
-    dissipation = np.array(D[:,:])
-    dissipation[np.logical_or(solid == 1, solid == -1)] = 0
-    dissipation[np.logical_or(solid == 3, solid == 2)] = 0
-
-    # Velocity field
-    file_name = datadir + f"Velocity_t{t}.mat"
-    with open(file_name, 'rb') as f:
-        dat = f.read()
-    v = np.ndarray((LX, LY, LZ, ndim), '=d', dat, 0, (ndim * 8 * LY * LZ, ndim * 8 * LZ, ndim * 8, 8))
-    print(f"max v at t={t}: ", np.amax(v))
+    # # Viscous dissipation
+    # file_name = datadir + f"ViscousDissipation_t{t}.mat"
+    # with open(file_name, 'rb') as f:
+    #     dat = f.read()
+    # D = np.ndarray((LX, LY, LZ), '=d', dat, 0, (8 * LY * LZ, 8 * LZ, 8))
+    # dissipation = np.array(D[:,:])
+    # dissipation[np.logical_or(solid == 1, solid == -1)] = 0
+    # dissipation[np.logical_or(solid == 3, solid == 2)] = 0
 
     # Plot setup
     fig, ax = plt.subplots() #plt.subplots(2, 1, figsize=(6, 5))
@@ -71,30 +65,13 @@ for t in range(tstart, tend + 1, tinc):
 
     rgbv = np.flip(liquid[:, :, zslice]).T
     phi = rgbv[:-19, :]
-    rgbdiss = np.flip(dissipation[:, :, zslice]).T
-
-    mass = 0
-    for i in range(len(phi[:,0])):
-        for j in range(len(phi[:,1])):
-            mass += rgbv[i,j]
-    
-    print("mass = ", mass)
+    # rgbdiss = np.flip(dissipation[:, :, zslice]).T
 
 
     im = ax.imshow(np.fliplr(rgbv), interpolation='nearest', origin='upper')
     #im2 = ax[1].imshow(rgbdiss, interpolation='nearest', origin='upper')
 
     stepx, stepy = 1, 1
-
-    # raw velocity slices (shape: (LX, LY))
-    vx = v[0:LX:stepx, 0:LY:stepy, zslice, 0]
-    vy = v[0:LX:stepx, 0:LY:stepy, zslice, 1]
-
-    # Build displayed U,V arrays that align with the image.
-    # Derived mapping: displayed[r, c] corresponds to original at (i=c, j=LY-1-r)
-    # So U_disp[r,c] = vx[c, LY-1 - r]  -> vx[:, ::-1].T
-    U_disp = vx[:, ::-1].T     # shape (LY, LX)
-    V_disp = vy[:, ::-1].T     # shape (LY, LX)
 
     # Coordinates grid that matches imshow indexing (rows=r, cols=c)
     X_disp, Y_disp = np.meshgrid(np.arange(0, LX, stepx),
@@ -104,8 +81,6 @@ for t in range(tstart, tend + 1, tinc):
     dec = 1   # set to 2 or 4 to sparsify arrows
     Xq = X_disp[::dec, ::dec]
     Yq = Y_disp[::dec, ::dec]
-    Uq = U_disp[::dec, ::dec]
-    Vq = V_disp[::dec, ::dec]
 
     # Plot quiver. origin='upper' was used in imshow, and these arrays are in the same indexing,
     # so no component sign flip is required.

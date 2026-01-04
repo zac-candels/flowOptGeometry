@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     Geometry<Lattice>::initialiseBoundaries(initBoundary, {0});
 
     // Initialise the order parameter to a droplet above the posts. See initFluid in main.hh.
-    OrderParameter<>::set<Lattice>(initFluid);
+    //OrderParameter<>::set<Lattice>(initFluid);
 
     // Will initialise the models. The lbm class can be used to evolve the LBM algorithm for both models by one timestep
     // with lbm.evolve();.
@@ -39,13 +39,13 @@ int main(int argc, char **argv) {
         if (timestep % saveInterval == 0) {
             if (mpi.rank == 0) std::cout << "Saving at timestep " << timestep << "." << std::endl;
 
-            saver.saveBoundaries(timestep);
+            if( timestep == 0 ) saver.saveBoundaries(timestep);
             //saver.saveParameter<ChemicalPotential<>>(timestep);
             //saver.saveParameter<Density<>>(timestep);
             //saver.saveParameter<Pressure<>>(timestep);
             saver.saveParameter<OrderParameter<>>(timestep);
             //saver.saveParameter<ViscousDissipation<>>(timestep);
-            saver.saveParameter<Velocity<>, Lattice::NDIM>(timestep);
+            //saver.saveParameter<Velocity<>, Lattice::NDIM>(timestep);
         }
         
         // Will start to apply the bodyforce after equilibriumtimesteps timesteps. See AfterEquilibration in main.hh.
