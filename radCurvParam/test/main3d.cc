@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
             //saver.saveParameter<Pressure<>>(timestep);
             saver.saveParameter<OrderParameter<>>(timestep);
             //saver.saveParameter<ViscousDissipation<>>(timestep);
-            //saver.saveParameter<Velocity<>, Lattice::NDIM>(timestep);
+            saver.saveParameter<Velocity<>, Lattice::NDIM>(timestep);
         }
         
         // Will start to apply the bodyforce after equilibriumtimesteps timesteps. See AfterEquilibration in main.hh.

@@ -407,7 +407,7 @@ double initFluid(const int k) {
     int posx = x_c;
     int posy = reservoirHeight + apertureHeight;
     int posz = z_c;
-    double radius = 1.3*b2;
+    double radius = 0.9*b2;
 
     double dist = std::max( abs(yy - posy), abs(xx - posx) );
 
@@ -415,8 +415,6 @@ double initFluid(const int k) {
 
     if( ( yy > reservoirHeight + apertureHeight - 1 ) ) //&& ( zz >= z_c - apWidth2 ) && ( zz <= z_c + apWidth2 ) )
     {
-        std::cout << "here" << std::endl;
-
         return (0.5 - 0.5 * tanh(2 * (dist - radius) / interfacewidth ));
     }
 
