@@ -7,7 +7,7 @@
 #SBATCH --account=ec288-wetting
 #SBATCH --qos=lowpriority
 #SBATCH --ntasks=5            # Number of tasks (processes)
-#SBATCH --cpus-per-task=280      # Number of CPU cores per task
+#SBATCH --cpus-per-task=288      # Number of CPU cores per task
 
 # ===============================
 # OpenMP configuration

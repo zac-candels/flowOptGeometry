@@ -333,12 +333,12 @@ int initBoundary(const int k) {
 
     if( ( yy >= reservoirHeight ) && ( yy <= reservoirHeight + apertureHeight + b1/2 +1 ) && !cond1 )
     {
-        return 2;
+        return 1;
     }
 
     if( ( yy >= reservoirHeight + apertureHeight -1 ) && ( yy <= reservoirHeight + apertureHeight ) && !cond1 )
     {
-        return 1;
+        return 2;
 
     }
     

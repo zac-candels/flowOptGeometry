@@ -62,24 +62,24 @@ write_legacy_vtk("solid.vtk", solid, array_name="BoundaryLabels_t0")
 # OrderParameter_t0.mat → phi.vtk
 # -------------------------------------------------------------------------
 
-outDirName = "vtk_files"
-os.system("mkdir -p %s"%outDirName)
+# outDirName = "vtk_files"
+# os.system("mkdir -p %s"%outDirName)
 
-with open("./data/OrderParameter_t0.mat", "rb") as f:
-    dat = f.read()
-phi = np.ndarray((LX, LY, LZ), dtype="=d", buffer=dat, offset=0,
-                 strides=(8 * LY * LZ, 8 * LZ, 8))
+# with open("./data/OrderParameter_t0.mat", "rb") as f:
+#     dat = f.read()
+# phi = np.ndarray((LX, LY, LZ), dtype="=d", buffer=dat, offset=0,
+#                  strides=(8 * LY * LZ, 8 * LZ, 8))
 
-write_legacy_vtk("phi.vtk", phi, array_name="OrderParameter_t0")
+# write_legacy_vtk("phi.vtk", phi, array_name="OrderParameter_t0")
 
-for t in range(tstart, tend + 1, tinc):
-    file_name = "./data/OrderParameter_t%li.mat"%t
+# for t in range(tstart, tend + 1, tinc):
+#     file_name = "./data/OrderParameter_t%li.mat"%t
 
-    dat_file = open(file_name, "rb")
+#     dat_file = open(file_name, "rb")
 
-    dat = dat_file.read()
-    phi = np.ndarray((LX, LY, LZ), dtype="=d", buffer=dat, offset=0,
-                 strides=(8 * LY * LZ, 8 * LZ, 8))
+#     dat = dat_file.read()
+#     phi = np.ndarray((LX, LY, LZ), dtype="=d", buffer=dat, offset=0,
+#                  strides=(8 * LY * LZ, 8 * LZ, 8))
 
-    outFileName = outDirName + "/OrderParameter_t%li.vtk"%t
-    write_legacy_vtk(outFileName, phi)
+#     outFileName = outDirName + "/OrderParameter_t%li.vtk"%t
+#     write_legacy_vtk(outFileName, phi)

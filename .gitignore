@@ -3,4 +3,6 @@
 *.png
 *.mp4
 *.log
+*.out
+*.exe
 **/data/

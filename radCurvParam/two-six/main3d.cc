@@ -23,25 +23,18 @@ int main(int argc, char **argv) {
     // Initialise the order parameter to a droplet above the posts. See initFluid in main.hh.
     OrderParameter<>::set<Lattice>(initFluid);
 
-    int lastTimeStep = 798000;
-
-    SaveHandler<Lattice> saver(datadir);
-    // Initialise the order parameter to a droplet above the posts. See initFluid in main.hh.
-    //OrderParameter<>::set<Lattice>(initFluid);
-    saver.loadParameter<OrderParameter<>>(datadir+"/OrderParameter_t" + std::to_string(lastTimeStep) + ".mat");
-    saver.loadParameter<Pressure<>>(datadir+"/Pressure_t" + std::to_string(lastTimeStep) +  ".mat");
-    saver.loadParameter<Velocity<>,Lattice::NDIM>(datadir+"/Velocity_t" + std::to_string(lastTimeStep) +  ".mat");
-
-
     // Will initialise the models. The lbm class can be used to evolve the LBM algorithm for both models by one timestep
     // with lbm.evolve();.
     Algorithm lbm(binary, pressure);
+
+    // Class that will handle saving, in the given directory.
+    SaveHandler<Lattice> saver(datadir);
 
     // Save binary file Header.mat with basic information for the simulation.
     saver.saveHeader(timesteps, saveInterval);
 
     // Main simulation loop
-    for (int timestep = lastTimeStep; timestep <= timesteps; timestep++) {
+    for (int timestep = 0; timestep <= timesteps; timestep++) {
         // Save the desired parameters, producing a binary file for each.
         if (timestep % saveInterval == 0) {
             if (mpi.rank == 0) std::cout << "Saving at timestep " << timestep << "." << std::endl;

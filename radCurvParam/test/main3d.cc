@@ -21,11 +21,13 @@ int main(int argc, char **argv) {
     Geometry<Lattice>::initialiseBoundaries(initBoundary, {0});
 
     // Initialise the order parameter to a droplet above the posts. See initFluid in main.hh.
-    //OrderParameter<>::set<Lattice>(initFluid);
+    OrderParameter<>::set<Lattice>(initFluid);
 
     // Will initialise the models. The lbm class can be used to evolve the LBM algorithm for both models by one timestep
     // with lbm.evolve();.
     Algorithm lbm(binary, pressure);
+
+    std::string datadir = sizeGradType + "/data/";
 
     // Class that will handle saving, in the given directory.
     SaveHandler<Lattice> saver(datadir);

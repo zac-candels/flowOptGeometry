@@ -142,15 +142,11 @@ using Lattice = LatticePropertiesRuntime<NoParallel, 3>;
 void initParams(std::string inputfile) {
     params.addParameter<int>(timesteps, "timesteps");
     params.addParameter<int>(saveInterval, "saveInterval");
-    params.addParameter<double>(radius, "radius");
     params.addParameter<double>(theta, "theta");
     params.addParameter<double>(A, "A");
     params.addParameter<double>(kappa, "kappa");
     params.addParameter<double>(surfacetension, "surfacetension");
     params.addParameter<double>(interfacewidth, "interfacewidth");
-    params.addParameter<double>(posx, "posx");
-    params.addParameter<double>(posy, "posy");
-    params.addParameter<double>(posz, "posz"); // Uncomment for 3D
     params.addParameter<double>(dens1, "dens1");
     params.addParameter<double>(dens2, "dens2");
     params.addParameter<double>(tau1, "tau1");
@@ -217,7 +213,7 @@ void initParams(std::string inputfile) {
     lx = (int)1*channel_length;
     //lx = 250;
 
-    ly = (int)2*b2;
+    ly = (int)2.5*b2;
     //ly = ((ly + 99) / 100) * 100;
 
     lz = 2*std::max(a2, b2) + 0.75*row_to_row_dist;
@@ -237,10 +233,10 @@ void initParams(std::string inputfile) {
     apertureWidth = (int)(b1/3);
     apWidth2 = (int)(apertureWidth/2);
 
-    ellipsoidCenter = int(0.1 * ly);
-
-    reservoirHeight = ellipsoidCenter + 10;
-    ratchetBottom = ellipsoidCenter + b1/2;
+    reservoirHeight = int(0.2*ly);
+    apertureHeight = 10;
+    ratchetBottom = reservoirHeight + apertureHeight;
+    ellipsoidCenter = ratchetBottom - b1/2;
 
     x_pos_first_row_front = a2;
     x_pos_second_row = x_pos_first_row_front + 18;
@@ -299,7 +295,7 @@ int initBoundary(const int k) {
             }
             else if (sizeGradType == "two-six")
             {
-                if ( (j + 4) % 8 < 2 )
+                if ( (j + 5) % 8 < 2 )
                 {
                     size_fac = 1.6;
                 }
@@ -360,7 +356,7 @@ int initBoundary(const int k) {
 
     bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
 
-    if( ( yy >= reservoirHeight ) && ( yy <= ratchetBottom ) && !cond1 )
+    if( ( yy >= reservoirHeight ) && ( yy < ratchetBottom ) && !cond1 )
     {
         return 2;
     }
@@ -375,68 +371,57 @@ int initBoundary(const int k) {
     return 0;
 }
 
-double initFluid(const int k)
-{
-    return 1;
-}
-
 //Initialises the fluid with a bulk value of 1 for the droplet and a bulk value of 0 for air
-//double initFluid(const int k) {
-    // // x coordinate of the lattice node k
-    // int xx = computeXGlobal<Lattice>(k);
-    // // y coordinate of the lattice node k
-    // int yy = computeY(ly, lz, k);
-    // // z coordinate of the lattice node k
-    // int zz = computeZ(ly, lz, k); // Uncomment for 3D
+double initFluid(const int k) {
+    // x coordinate of the lattice node k
+    int xx = computeXGlobal<Lattice>(k);
+    // y coordinate of the lattice node k
+    int yy = computeY(ly, lz, k);
+    // z coordinate of the lattice node k
+    int zz = computeZ(ly, lz, k); // Uncomment for 3D
 
-    // double right_reservoir = lx - (reservoir_length - reservoir_length/2);
+    double right_reservoir = lx - (reservoir_length - reservoir_length/2);
 
-    // // Radial distance from the centre of the droplet at (posx, posy)
-    // //double rr2 = (xx - posx) * (xx - posx) + (yy - posy) * (yy - posy);
-    // double rr2 = (xx - posx) * (xx - posx) + (yy - posy) * (yy - posy) + (zz - posz) * (zz - posz); // Switch these for 3D
+    // Radial distance from the centre of the droplet at (posx, posy)
+    //double rr2 = (xx - posx) * (xx - posx) + (yy - posy) * (yy - posy);
+    double rr2 = (xx - posx) * (xx - posx) + (yy - posy) * (yy - posy) + (zz - posz) * (zz - posz); // Switch these for 3D
 
-    // // Smooth droplet
+    // Smooth droplet
 
-    // int x_c = (int)(lx/2);
-    // int z_c = (int)(lz/2);
-    // int apWidth2 = (int)(apertureWidth/2);
+    int x_c = (int)(lx/2);
+    int z_c = (int)(lz/2);
+    int apWidth2 = (int)(apertureWidth/2);
 
-    // bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
+    bool cond1 = ( xx < x_c + apWidth2 ) && ( xx > x_c - apWidth2 ) && ( zz < z_c + apWidth2 ) && ( zz > z_c - apWidth2 );
     
-    // if( ( yy <= reservoirHeight ) )
-    // {
-    //     return 1;
-    // }
+    if( ( yy <= reservoirHeight ) )
+    {
+        return 1;
+    }
 
-    // if( ( yy <= reservoirHeight + apertureHeight + 1 ) && cond1 )
-    // {
-    //     return 1;
-    // }
+    if( ( yy <= ratchetBottom ) && cond1 )
+    {
+        return 1;
+    }
 
-    // int posx = x_c;
-    // int posy = reservoirHeight + apertureHeight;
-    // int posz = z_c;
-    // double radius = 1.3*b2;
+    int posx = x_c;
+    int posy = reservoirHeight + apertureHeight;
+    int posz = z_c;
+    double radius = 1.3*b2;
 
-    // double dist = std::max( abs(yy - posy), abs(xx - posx) );
+    double dist = std::max( abs(yy - posy), abs(xx - posx) );
 
 
 
-    // if( ( yy > reservoirHeight + apertureHeight ) ) //&& ( zz >= z_c - apWidth2 ) && ( zz <= z_c + apWidth2 ) )
-    // {
-    //     //return 0.5 - 0.5*tanh(2*(yy - ( reservoirHeight + apertureHeight + 3 ) )/4.0);
-    //     if(initBoundary(k) == 1)
-    //     {
-    //         return 0;
-    //     }
-    //     else
-    //     {
-    //         return (0.5 - 0.5 * tanh(2 * (dist - radius) / interfacewidth ));
-    //     }
-    // }
+    if( ( yy > reservoirHeight + apertureHeight - 1 ) ) //&& ( zz >= z_c - apWidth2 ) && ( zz <= z_c + apWidth2 ) )
+    {
+        std::cout << "here" << std::endl;
 
-    // return 0;
-//}
+        return (0.5 - 0.5 * tanh(2 * (dist - radius) / interfacewidth ));
+    }
+
+    return 0;
+}
 
 //
 ///////// Simulation details
