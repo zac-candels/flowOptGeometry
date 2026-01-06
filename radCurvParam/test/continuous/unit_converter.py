@@ -82,10 +82,11 @@ class UnitConverter:
 
 
 if (__name__ == "__main__"):
-    units = UnitConverter(dx=2e-5, dt=0.00015, surface_tension=[0.0728, 0.0027])
+    units = UnitConverter(dx=2e-5, dt=1.33e-5, surface_tension=[0.0728, 0.0027])
     #units = UnitConverter(dx=0.0001, dt=4.120879120879121e-07, kg=1/2.472527472527473e-12)
     print("1 second in lattice units:", units.toLattice(1, s=1))
     print("R_curv = 0.75mm in lattice units:", units.toLattice(0.00075, m=1))
     print("R2 = 0.4mm in lattice units:", units.toLattice(0.0004, m=1))
     print("tip-to-tip distance 1.9mm in lattice units:", units.toLattice(0.0019, m=1))
     print("row-to-row distance 2.0mm in lattce units:", units.toLattice(0.002, m=1))
+    print("width 0.1mm in lattice units:", units.toLattice(0.0001, m=1))

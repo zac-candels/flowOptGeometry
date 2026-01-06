@@ -48,7 +48,7 @@ tend = max(
     if p.is_file() and pattern.match(p.name)
 )
 
-tinc = 20000
+tinc = 2000
 
 # Slice in the z direction to plot
 zslice=int(LZ/2)
@@ -57,8 +57,6 @@ left_CL_init = 0
 right_CL_init = 0
 left_CL_disp_vec = []
 right_CL_disp_vec = []
-
-tend = 1580000
 
 for t in range(tstart, tend, tinc):
 
@@ -134,8 +132,16 @@ right_CL_disp_vec = np.asarray(right_CL_disp_vec)
 left_CL_disp_vec = np.asarray(left_CL_disp_vec)
 
 t = range(tstart, tend, tinc)
+t = np.asarray(t)/75187.96
+left_CL_disp_vec = left_CL_disp_vec / 10.
 plt.figure()
-plt.plot(t, left_CL_disp_vec)
-title_str = "Contact line spreading"
-plt.title(title_str)
+plt.plot(t, left_CL_disp_vec, linewidth=2)
+plt.ylabel(r"Distance [mm]", fontsize=15)
+plt.xlabel(r"time [s]", fontsize=15)
+plt.legend()
+plt.tick_params(direction="in")
+
+
+
+
 plt.savefig("./spread.png")

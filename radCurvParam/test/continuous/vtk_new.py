@@ -33,7 +33,7 @@ def write_legacy_vtk(filename, array, array_name="scalars"):
 # -------------------------------------------------------------------------
 # Read geometry dimensions
 # -------------------------------------------------------------------------
-with open("./two-six/Header.mat", "rb") as f:
+with open("./data/Header.mat", "rb") as f:
     LX = struct.unpack("=i", f.read(4))[0]
     LY = struct.unpack("=i", f.read(4))[0]
     LZ = struct.unpack("=i", f.read(4))[0]
@@ -50,7 +50,7 @@ with open("./two-six/Header.mat", "rb") as f:
 # -------------------------------------------------------------------------
 # BoundaryLabels_t0.mat → solid.vtk
 # -------------------------------------------------------------------------
-with open("./two-six/BoundaryLabels_t0.mat", "rb") as f:
+with open("./data/BoundaryLabels_t0.mat", "rb") as f:
     dat = f.read()
 solid = np.ndarray((LX, LY, LZ), dtype="=i", buffer=dat, offset=0,
                    strides=(4*LY*LZ, 4*LZ, 4)).copy()
