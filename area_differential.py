@@ -2,14 +2,14 @@ import sympy as sp
 import numpy as np
 from scipy.optimize import fsolve
 
-c, theta = sp.symbols('c theta ')
-a, phi = sp.symbols('a phi', positive=True)
+theta = sp.symbols('theta ')
+a, b, c, phi = sp.symbols('a b c phi', positive=True)
 
 range_cond = sp.And(phi >= 0, phi <= sp.pi)
 
 
 x = a*sp.cos(theta)*sp.sin(phi)
-y = a*sp.sin(theta)*sp.sin(phi)
+y = b*sp.sin(theta)*sp.sin(phi)
 z = c*sp.cos(phi)
 
 dx_dphi = sp.diff(x, phi)
@@ -20,13 +20,6 @@ dx_dtheta = sp.diff(x,theta)
 dy_dtheta = sp.diff(y,theta)
 dz_dtheta = sp.diff(z,theta)
 
-#dx_dphi = a*sp.cos(theta)*sp.cos(phi)
-# dy_dphi = a*sp.sin(theta)*sp.cos(phi)
-# dz_dphi = -c*sp.sin(phi)
-
-# dx_dtheta = -a*sp.sin(theta)*sp.sin(phi)
-# dy_dtheta = -a*sp.cos(theta)*sp.sin(phi)
-# dz_dtheta = 0
 
 T_theta = sp.Matrix([ dx_dtheta, dy_dtheta, dz_dtheta ])
 

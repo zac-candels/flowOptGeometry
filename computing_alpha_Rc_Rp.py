@@ -51,9 +51,13 @@ r_Rp = r_alpha
 
 # Since y' is 0 at r_alpha, we will simply have R_p = y''.
 
+dy_dx = sp.diff(y_fn, x)
+
 d2y_dx2 = sp.diff(y_fn, x, 2)
 
-Rp = d2y_dx2.subs(x, r_alpha[0])
+#Rp = sp.Abs(1/d2y_dx2.subs(x, r_alpha[0]))
+
+Rp = (1 + (dy_dx)**2 )**(3/2) / d2y_dx2
 
 
 
