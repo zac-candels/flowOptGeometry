@@ -8,10 +8,10 @@ from scipy.integrate import dblquad
 exp_tilt_angle = 60
 exp_R_curv = 0.75
 exp_R2 = 0.4
-exp_Sa = 0.674
+exp_Sa = 0.2
 
 
-def integrand(theta, phi, a=1.0, b=1, c=1.0):
+def integrand(theta, phi, a, b, c):
     """
     The function from the image. 
     Note: scipy.integrate.dblquad expects the first argument to be the inner 
@@ -39,7 +39,7 @@ def surfaceArea(a, b, c, theta_L):
     
     phi_lims = [0, np.pi/3]
     
-    theta_lims = [0, theta_L]
+    theta_lims = [np.pi/2-theta_L/2, np.pi/2+theta_L/2]
     
     
     area = dblquad(integrand, phi_lims[0], phi_lims[1],
@@ -63,7 +63,7 @@ def func_zUp(x):
 [a, b, c, theta_L] = fsolve(func_zUp, [1, 1, 1, 1])
 
 
-
+print("theta_L = ", theta_L*180/np.pi)
 
 
 
