@@ -2,58 +2,59 @@ import sympy as sym
 import numpy as np
 from scipy.optimize import fsolve
 
-x, y, z, a, b, c = sym.symbols('x y z a b c')
-
-sym.init_printing(use_unicode=True)
-
-y_fn = b*sym.sqrt(1 - (x/a)**2)
-
-x_fn = a*sym.sqrt(1 - (z/c)**2)
-
-dy = sym.diff(y_fn, x)
-
-ddy = sym.diff(y_fn, x, 2)
-
-ddx = sym.diff(x_fn, z, 2)
-
-x_tilt = -sym.sqrt(3)*a/2
-
-x_curv = -sym.sqrt(7)*a/4
-
-slope_tilt_angle = dy.subs(x, x_tilt)
-
-slope_R_curv = dy.subs(x, x_curv)
-
-concavity_R_curv = ddy.subs(x, x_curv)
-
-R2 = ddx.subs(z, 0)
-
-
-R_curv = (1 + slope_R_curv**2)**(3/2) / concavity_R_curv
+from scipy.integrate import dblquad
 
 
 exp_tilt_angle = 60
 exp_R_curv = 1
 exp_R2 = 0.4
+exp_Sa = 0.674
 
-def func_yUp(x):
-    angle = np.arctan(np.sqrt(3)*x[1]/x[0]) * 180 / np.pi - exp_tilt_angle
-    R_curv = 27*x[0]**2*( 1 + (7/9)*x[1]**2/x[0]**2 )**(3/2) / (64*x[1]) - exp_R_curv
-    R2 = x[2]**2 / x[0] - exp_R2
-    return [angle, R_curv, R2]
 
-[a, b, c] = fsolve(func_yUp, [1, 1, 1])
+def integrand(theta, phi, a=1.0, b=1, c=1.0):
+    """
+    The function from the image. 
+    Note: scipy.integrate.dblquad expects the first argument to be the inner 
+    variable (theta) and the second to be the outer variable (phi).
+    """
+    sin_phi = np.sin(phi)
+    cos_phi = np.cos(phi)
+    sin_theta = np.sin(theta)
+    cos_theta = np.cos(theta)
+    
+    # term1 = a^2 * sin^4(phi) * |c * sin(theta)|^2
+    term1 = (a**2) * (sin_phi**4) * np.abs(c * sin_theta)**2
+    
+    # term2 = a^2 * sin^4(phi) * |c * cos(theta)|^2
+    term2 = (a**2) * (sin_phi**4) * np.abs(c * cos_theta)**2
+    
+    # term3 = |a^2 * sin(phi) * sin^2(theta) * cos(phi) + a^2 * sin(phi) * cos(phi) * cos^2(theta)|^2
+    inner_term3 = (a**2 * sin_phi * (sin_theta**2) * cos_phi) + \
+                  (a**2 * sin_phi * cos_phi * (cos_theta**2))
+    term3 = np.abs(inner_term3)**2
+    
+    return np.sqrt(term1 + term2 + term3)
+
+def surfaceArea(a, b, c, theta_L):
+    
+    area = dblquad(integrand, 0, np.pi/3, 0, theta_L, args=(a, b, c) )[0]
+    
+    return area
+    
+
+# NEED TO FIX INTEGRAND. CHANGE THE AREA DIFFERENTIAL 
+# SO THAT IT INCLUDES B AS WELL.
+
 
 
 def func_zUp(x):
-    angle = np.arctan(np.sqrt(3)*x[2]/x[1]) * 180 / np.pi - 60
-    R_curv = 27*x[1]**2*( 1 + (7/9)*x[2]**2/x[1]**2 )**(3/2) / (64*x[2]) - 0.5
-    R2 = x[0]**2 / x[1] - 0.4
-    return [angle, R_curv, R2]
+    angle = x[2]*np.sqrt(3) - exp_tilt_angle
+    R_curv = 27*x[0]**2*( 1 + (7/9)*x[2]**2/x[0]**2 )**(3/2) / (64*x[2]) - exp_R_curv
+    R2 = 64 / (27*x[0]) - exp_R2
+    Sa = surfaceArea(x[0], x[1], x[2], x[3]) - exp_Sa
+    return [angle, R_curv, R2, Sa]
 
-root2 = fsolve(func_zUp, [1, 1, 1])
-
-
+[a, b, c, theta_L] = fsolve(func_zUp, [1, 1, 1, 1])
 
 
 
