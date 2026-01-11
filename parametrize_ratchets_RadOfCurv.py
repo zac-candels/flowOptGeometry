@@ -8,7 +8,7 @@ from scipy.integrate import dblquad
 exp_tilt_angle = 60
 exp_R_curv = 0.75
 exp_R2 = 0.4
-exp_Sa = 0.2
+exp_Sa = 0.0674
 
 
 def integrand(theta, phi, a, b, c):
@@ -51,7 +51,11 @@ def surfaceArea(a, b, c, theta_L):
 
 
 def func_zUp(x):
-    angle = np.arctan(x[2]*np.sqrt(3)/x[1])*180/np.pi - exp_tilt_angle
+    
+    y = x[1]*np.sqrt(3)/2
+    deriv_for_slope = x[2]*y / ( x[1]**2*(1 - (y/x[1])**2  ) )
+    
+    angle = np.arctan(deriv_for_slope)*180/np.pi - exp_tilt_angle
     
     R_curv = 27*x[1]**2*( 1 + (7/9)*x[2]**2/x[1]**2 )**(3/2) / (64*x[2]) - exp_R_curv
     
@@ -60,7 +64,7 @@ def func_zUp(x):
     Sa = surfaceArea(x[0], x[1], x[2], x[3]) - exp_Sa
     return [angle, R_curv, R2, Sa]
 
-[a, b, c, theta_L] = fsolve(func_zUp, [1, 1, 1, 1])
+[a, b, c, theta_L] = fsolve(func_zUp, [1,1,1,1])
 
 
 print("theta_L = ", theta_L*180/np.pi)
